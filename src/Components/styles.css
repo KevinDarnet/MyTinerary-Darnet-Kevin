@@ -150,6 +150,9 @@ body {
 .titulocarousel {
   color: #ffffff;
 }
+.titulocalltoaction {
+  color: white;
+}
 
 .footer {
   height: 15rem;
@@ -289,4 +292,7 @@ button:hover .button-text {
   flex-direction: column;
   align-items: center;
   justify-items: center;
+}
+.tituloheader {
+  color: white;
 }

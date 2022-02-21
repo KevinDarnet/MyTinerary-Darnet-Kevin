@@ -1,13 +1,10 @@
 import * as React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./styles.css";
 
-export default function MediaCard() {
+export default function Citties() {
   return (
     <>
-      <div className="conteinertitlogo">
-        <h1 className="tituloheader">Web in construction</h1>
-        <div className="buttoncitties"></div>
-      </div>
+      <h1 className="tituloheader">Web in construction</h1>
     </>
   );
 }
