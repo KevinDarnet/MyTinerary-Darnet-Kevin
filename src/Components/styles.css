@@ -73,6 +73,7 @@ body {
   align-content: center;
   font-weight: 900;
 }
+
 .conteinerHeader {
   display: flex;
   flex-direction: column;
@@ -80,6 +81,7 @@ body {
   justify-content: center;
   height: 15rem;
   padding: 2rem;
+  margin-bottom: 6rem;
 }
 
 .container {
@@ -134,8 +136,8 @@ body {
 .divcalltoactionfather {
   padding: 1rem;
   display: flex;
-  align-items: center;
-  justify-items: center;
+  align-content: center;
+  justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 2rem;
 }
@@ -292,6 +294,8 @@ button:hover .button-text {
   border-radius: 2rem;
 }
 .calltoactionprincipal {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -309,4 +313,12 @@ button:hover .button-text {
 .imgconstruction {
   width: 25rem;
   padding: 2rem;
+}
+.logoinheader {
+  width: 9rem;
+}
+.conteinerlogoinheader {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }

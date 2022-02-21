@@ -105,9 +105,7 @@ const ResponsiveAppBar = () => {
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            <img className="logo" src={Logomytinerary} />
-          </Typography>
+          ></Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <LinkRouter to="/" className="linkresp">
               <Button
