@@ -11,7 +11,7 @@ export default function App() {
   return (
     <div className="divcarousel">
       <div>
-        <h2 className="hcarousel">Popular MyTineraries</h2>
+        <h1 className="hcarousel">Popular MyTineraries</h1>
       </div>
       <Swiper
         slidesPerView={4}

@@ -1,5 +1,8 @@
 body {
-  background: rgb(0, 0, 0);
+  background-image: url("./Assests/fondobody2.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #000;
@@ -75,7 +78,7 @@ body {
   align-content: center;
   justify-content: center;
   height: 15rem;
-  padding: 4rem;
+  padding: 2rem;
 }
 
 .container {
@@ -295,4 +298,14 @@ button:hover .button-text {
 }
 .tituloheader {
   color: white;
+}
+.construction {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+.imgconstruction {
+  width: 25rem;
+  padding: 2rem;
 }

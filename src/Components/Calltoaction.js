@@ -11,7 +11,6 @@ import img4up from "./Assests/img4up.jpg";
 export default function CardHover() {
   return (
     <div className="calltoactionprincipal">
-      //first call to action
       <div className="divcalltoactionfather">
         <div className="flip-card-hover">
           <div className="flip-card-hover-inner">
@@ -40,7 +39,6 @@ export default function CardHover() {
           </h2>
         </div>
       </div>
-      //second call to action
       <div className="divcalltoactionfather">
         <div className="flip-card-hover">
           <div className="flip-card-hover-inner">
@@ -69,7 +67,6 @@ export default function CardHover() {
           </h2>
         </div>
       </div>
-      //Three call to action
       <div className="divcalltoactionfather">
         <div className="flip-card-hover">
           <div className="flip-card-hover-inner">
@@ -97,7 +94,6 @@ export default function CardHover() {
           </h2>
         </div>
       </div>
-      //Fourth call to action
       <div className="divcalltoactionfather">
         <div className="flip-card-hover">
           <div className="flip-card-hover-inner">

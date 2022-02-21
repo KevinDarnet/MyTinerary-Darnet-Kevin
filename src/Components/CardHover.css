@@ -29,12 +29,12 @@
 }
 
 .flip-card-hover-front {
-  background-color: #bbb;
+  background-color: rgba(187, 187, 187, 0);
   color: black;
 }
 
 .flip-card-hover-back {
-  background-color: #2980b9;
+  background-color: #297fb900;
   color: white;
   transform: rotateY(180deg);
 }
