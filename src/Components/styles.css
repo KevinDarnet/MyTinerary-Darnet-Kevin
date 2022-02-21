@@ -1,5 +1,6 @@
 body {
-  background-image: url("./Assests/fondobody2.png");
+  background-image: url("./Assests/fondobody.png");
+  background-color: #3f3f3f;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
