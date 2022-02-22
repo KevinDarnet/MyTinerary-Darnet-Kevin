@@ -1,13 +1,17 @@
 import * as React from "react";
 import "./styles.css";
-import imgcontruciton from "./Assests/imgunderconstruction.png";
 
 export default function Cities() {
   return (
     <>
-      <div className="construction">
-        <h1 className="tituloheader">Web in construction</h1>
-        <img className="imgconstruction" src={imgcontruciton} />
+      <div className="conteinerHeader">
+        <div className="conteinertitlogo">
+          <h1 className="tituloheader">Find your next adventure</h1>
+
+          <div className="buttoncitties">
+            <button className="btnhome">Search</button>
+          </div>
+        </div>
       </div>
     </>
   );
