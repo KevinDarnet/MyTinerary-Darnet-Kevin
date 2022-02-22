@@ -16,14 +16,14 @@ export default function App() {
           <img className="logoinheader" src={Logomytinerary} />
         </div>
         <div className="conteinertitlogo">
-          <h1 className="tituloheader">
+          <h2 className="tituloheader">
             Find your perfect trip, designed by insiders who know and love their
             cities!
-          </h1>
+          </h2>
 
           <div className="buttoncitties">
             <LinkRouter to="Citties" className="linkresp">
-              <button className="btnhome">Citties</button>
+              <button className="btnhome">Travel</button>
             </LinkRouter>
           </div>
         </div>

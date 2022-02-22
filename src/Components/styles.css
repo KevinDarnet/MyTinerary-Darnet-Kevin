@@ -1,7 +1,8 @@
 body {
+  background-image: url("./Assests/fondobodynew.png");
   background-color: #000000;
-  background-position: center center;
   background-size: cover;
+  background-position: center 0;
   background-repeat: no-repeat;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -79,8 +80,8 @@ body {
   align-content: center;
   justify-content: center;
   height: 15rem;
-  padding: 2rem;
-  margin-bottom: 6rem;
+  padding: 3rem;
+  margin-bottom: 15rem;
 }
 
 .container {
@@ -92,7 +93,7 @@ body {
 }
 .logo {
   padding: 1rem;
-  width: 4rem;
+  width: 7rem;
 }
 
 .btnhome {
@@ -293,7 +294,7 @@ button:hover .button-text {
   border-radius: 2rem;
 }
 .calltoactionprincipal {
-  margin-top: 2rem;
+  margin-top: 10rem;
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
@@ -314,7 +315,7 @@ button:hover .button-text {
   padding: 2rem;
 }
 .logoinheader {
-  width: 9rem;
+  width: 12rem;
 }
 .conteinerlogoinheader {
   display: flex;
