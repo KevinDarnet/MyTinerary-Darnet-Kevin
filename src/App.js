@@ -1,7 +1,7 @@
 import "./App.css";
 import NavBar from "./Components/NavBar";
 import Home from "./Components/Home";
-import Citties from "./Components/Citties";
+import Cities from "./Components/Cities";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Citties" element={<Citties />} />
+        <Route path="/Cities" element={<Cities />} />
       </Routes>
     </BrowserRouter>
   );

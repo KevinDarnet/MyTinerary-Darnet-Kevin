@@ -43,12 +43,12 @@ export default function App() {
             </button>
           </LinkRouter>
 
-          <LinkRouter to="Citties" className="linkresp">
+          <LinkRouter to="Cities" className="linkresp">
             <button class="learn-more">
               <span class="circle" aria-hidden="true">
                 <span class="icon arrow"></span>
               </span>
-              <span class="button-text">Citties</span>
+              <span class="button-text">Cities</span>
             </button>
           </LinkRouter>
           <LinkRouter to="Gallery" className="linkresp">

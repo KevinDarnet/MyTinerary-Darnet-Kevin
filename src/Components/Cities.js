@@ -2,7 +2,7 @@ import * as React from "react";
 import "./styles.css";
 import imgcontruciton from "./Assests/imgunderconstruction.png";
 
-export default function Citties() {
+export default function Cities() {
   return (
     <>
       <div className="construction">
