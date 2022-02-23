@@ -1,4 +1,4 @@
-import "./App.css";
+import "./Components/Styles/App.css";
 import NavBar from "./Components/NavBar/NavBar";
 import Home from "./Components/Home/Home";
 import Cities from "./Components/Cities/Cities";
