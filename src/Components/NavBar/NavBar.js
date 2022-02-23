@@ -79,7 +79,7 @@ const ResponsiveAppBar = () => {
             >
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center">
-                  <LinkRouter to="/" className="linkresp">
+                  <LinkRouter to="" className="linkresp">
                     Home
                   </LinkRouter>
                 </Typography>
@@ -109,7 +109,7 @@ const ResponsiveAppBar = () => {
             <img className="logo" src={Logomytinerary} />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <LinkRouter to="/" className="linkresp">
+            <LinkRouter to="" className="linkresp">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}

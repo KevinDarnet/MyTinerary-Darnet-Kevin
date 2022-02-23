@@ -34,7 +34,7 @@ export default function App() {
         </div>
 
         <div className="btnfooter">
-          <LinkRouter to="*" className="linkresp">
+          <LinkRouter to="" className="linkresp">
             <button class="learn-more">
               <span class="circle" aria-hidden="true">
                 <span class="icon arrow"></span>
@@ -43,7 +43,7 @@ export default function App() {
             </button>
           </LinkRouter>
 
-          <LinkRouter to="Cities" className="linkresp">
+          <LinkRouter to="/Cities" className="linkresp">
             <button class="learn-more">
               <span class="circle" aria-hidden="true">
                 <span class="icon arrow"></span>
