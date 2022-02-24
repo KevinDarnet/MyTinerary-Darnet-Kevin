@@ -15,7 +15,7 @@ const datos = [
     name: "Gran Pirámide de Guiza",
     lugar: "Egipto",
     moneda: "Libra egipcia",
-    idioma: "Árabe ",
+    idioma: "Árabe",
   },
   {
     id: 3,
@@ -95,16 +95,16 @@ const datos = [
       "https://tipsparatuviaje.com/wp-content/uploads/2019/08/kilimanjaro-tanzania.jpg",
     name: "Kilimanjaro",
     lugar: "Tanzania",
-    moneda: "Chelín tanzano",
+    moneda: "Chelín",
     idioma: "Swahili",
   },
   {
     id: 12,
     image:
       "https://tipsparatuviaje.com/wp-content/uploads/2019/08/cataratas-de-iguazu-argentina-y-brasil.jpg",
-    name: "Cataratas de Iguazú",
+    name: "Iguaçu Falls",
     lugar: "Argentina y Brasil",
-    moneda: "Pesos Argentinos",
+    moneda: "Argentine pesos",
     idioma: "Español",
   },
   {

@@ -7,7 +7,7 @@ import { Link as LinkRouter } from "react-router-dom";
 import Calltoaction from "../Calltoaction/Calltoaction";
 import Footer from "../Footer/Footer";
 import Logomytinerary from "../Assests/Logomytinerary.png";
-import Video from "../Assests/videofondo.mp4";
+import VideoHome from "../Assests/videohome.mp4";
 
 export default function App() {
   return (
@@ -20,13 +20,13 @@ export default function App() {
           style={{
             position: "absolute",
             width: "100%",
-            height: "70%",
+            height: "75%",
             objectFit: "cover",
             transform: "translate (-50%, -50%)",
             zInedx: "-10",
           }}
         >
-          <source src={Video} type="video/mp4" />
+          <source src={VideoHome} type="video/mp4" />
         </video>
       </div>
       <div className="conteinerHeader">
