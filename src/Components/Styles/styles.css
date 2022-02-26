@@ -132,6 +132,7 @@ body {
   font-weight: 700;
 }
 .divcalltoactionfather {
+  width: auto;
   border-bottom-right-radius: 50px;
   border-top-left-radius: 50px;
   padding: 0.2rem;
@@ -161,6 +162,41 @@ body {
   margin-bottom: 2rem;
 }
 .flip-card-hover {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card-hover-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 1.5s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-hover:hover .flip-card-hover-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-hover-front,
+.flip-card-hover-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-color: none;
+}
+
+.flip-card-hover-back {
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.flip-card-hover {
   padding: 0.5rem;
 }
 .imgcarousel {
@@ -174,7 +210,7 @@ body {
 }
 
 .footer {
-  height: 15rem;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -281,8 +317,6 @@ button:hover .button-text {
   color: #dddddd;
 }
 .copyrigthfooter {
-  padding: 2rem;
-  margin-bottom: 5rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -307,12 +341,13 @@ button:hover .button-text {
   border-radius: 2rem;
 }
 .calltoactionprincipal {
-  margin-top: 15rem;
+  width: 100%;
+  margin-top: 10rem;
   margin-bottom: 2rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 }
 .tituloheader {
   color: white;
@@ -338,7 +373,6 @@ button:hover .button-text {
 }
 .titulocities {
   text-align: center;
-  margin-top: 4rem;
   color: white;
   padding: 2rem;
   z-index: 1;
@@ -355,15 +389,6 @@ button:hover .button-text {
   text-align: center;
   width: 100%;
 }
-.conteinertitleandlogdown {
-  width: 100%;
-  height: 4rem;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  z-index: 1;
-}
 
 .arrowdown {
   width: 2rem;
@@ -375,8 +400,6 @@ button:hover .button-text {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  padding: 2rem;
-  margin-top: 4rem;
   margin-bottom: 5rem;
   z-index: 1;
 }
@@ -397,7 +420,7 @@ button:hover .button-text {
   color: white;
 }
 .card {
-  margin: 1rem;
+  margin: 2.5rem;
   padding: 1rem;
   width: 200px;
   height: auto;
@@ -422,7 +445,11 @@ button:hover .button-text {
 .video {
   opacity: 0.4;
 }
-
+.videocalltoaction {
+  opacity: 0.3;
+  margin-top: 10rem;
+  margin-right: 10rem;
+}
 .inputsearch {
   width: 15rem;
   height: 2rem;

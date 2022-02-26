@@ -6,8 +6,20 @@ import "swiper/css/navigation";
 import "../Styles/styles.css";
 import Datos from "../Json/datos";
 import { Autoplay, Pagination, Navigation } from "swiper";
+import axios from "axios";
 
 export default function App() {
+  const peticionGet = async () => {
+    await axios
+      .get("http://localhost:4000/api/allcities")
+      .then((response) => {
+        console.table(response.data.response.ciudades);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  peticionGet();
   return (
     <div className="divcarousel">
       <div>
