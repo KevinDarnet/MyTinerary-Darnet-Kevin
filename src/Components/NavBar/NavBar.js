@@ -91,13 +91,6 @@ const ResponsiveAppBar = () => {
                   </LinkRouter>
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">
-                  <LinkRouter to="Gallery" className="linkresp">
-                    Gallery
-                  </LinkRouter>
-                </Typography>
-              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -123,14 +116,6 @@ const ResponsiveAppBar = () => {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 Cities
-              </Button>
-            </LinkRouter>
-            <LinkRouter to="Gallery" className="linkresp">
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                Gallery
               </Button>
             </LinkRouter>
           </Box>

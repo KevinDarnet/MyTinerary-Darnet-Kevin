@@ -40,7 +40,7 @@ export default function App() {
           </h2>
 
           <div className="buttoncitties">
-            <LinkRouter to="Cities" className="linkresp">
+            <LinkRouter to="/Cities" className="linkresp">
               <button className="btnhome">Travel</button>
             </LinkRouter>
           </div>

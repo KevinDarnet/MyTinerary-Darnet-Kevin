@@ -23,18 +23,10 @@ export default function App() {
               <span class="button-text">Instagram</span>
             </button>
           </a>
-          <a href="https://www.whatsapp.com/" target="_blank">
-            <button class="learn-more">
-              <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
-              </span>
-              <span class="button-text">WhatsApp</span>
-            </button>
-          </a>
         </div>
 
         <div className="btnfooter">
-          <LinkRouter to="" className="linkresp">
+          <LinkRouter to="*" className="linkresp">
             <button class="learn-more">
               <span class="circle" aria-hidden="true">
                 <span class="icon arrow"></span>
@@ -49,14 +41,6 @@ export default function App() {
                 <span class="icon arrow"></span>
               </span>
               <span class="button-text">Cities</span>
-            </button>
-          </LinkRouter>
-          <LinkRouter to="Gallery" className="linkresp">
-            <button class="learn-more">
-              <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
-              </span>
-              <span class="button-text">Gallery</span>
             </button>
           </LinkRouter>
         </div>
