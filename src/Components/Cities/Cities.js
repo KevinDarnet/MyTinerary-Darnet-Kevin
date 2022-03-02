@@ -4,6 +4,8 @@ import Video from "../Assests/videofondo.mp4";
 import NotFound from "../Assests/notfound.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /* NO FUNCIONA EL FOOTER EN CITIES */
 
@@ -11,10 +13,10 @@ export default function Cities() {
   const [ciudades, setCiudades] = useState([]); //impresion dinámica
   const [todasLasCiudades, setTodasLasCiudades] = useState([]); //cambios de lo dinámico a través del search e impresion de lo buscado
   const [busqueda, setBusqueda] = useState(""); //cambios en el search
-
-  const peticionGet = () => {
+  console.log(useParams());
+  const peticionGet = async () => {
     //Peticion de informacion a la Api con Axios
-    axios
+    await axios
       .get("http://localhost:4000/api/allcities")
       .then((response) => {
         console.log(response.data.response.ciudades);
@@ -98,9 +100,11 @@ export default function Cities() {
                 <p className="descripcioncard">- Country: {ciudad.country} </p>
                 <p className="descripcioncard">- Language: {ciudad.language}</p>
                 <p className="descripcioncard">- Coin: {ciudad.coin} </p>
-                <div className="contenedorbuttoncities">
-                  <button class="btndetails">Details</button>
-                </div>
+                <Link to={`/Details/${ciudad._id}`}>
+                  <div className="contenedorbuttoncities">
+                    <button class="btndetails">Details</button>
+                  </div>
+                </Link>
               </div>
             </div>
           ))
