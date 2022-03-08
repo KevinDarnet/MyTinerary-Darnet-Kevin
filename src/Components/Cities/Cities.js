@@ -37,11 +37,7 @@ export default function Cities() {
   const filtrarBusqueda = (terminoBusqueda) => {
     let resultadoBusqueda = todasLasCiudades.filter((elemento) => {
       if (
-        elemento.name
-          .toString()
-          .toLowerCase()
-          .startsWith(terminoBusqueda.toLowerCase().trim()) ||
-        elemento.country
+        elemento.city
           .toString()
           .toLowerCase()
           .startsWith(terminoBusqueda.toLowerCase().trim())
@@ -70,7 +66,6 @@ export default function Cities() {
             width: "100%",
             height: "42%",
             objectFit: "cover",
-            transform: "translate (-50%, -50%)",
             zInedx: "-10",
           }}
         >
@@ -82,7 +77,7 @@ export default function Cities() {
         <div class="inputsearch">
           <input
             className="inputsearch"
-            placeholder="Search City or Country"
+            placeholder="Search City"
             value={busqueda}
             onChange={cambioBusqueda}
           />
@@ -96,7 +91,7 @@ export default function Cities() {
                 <img className="imgcard" src={ciudad.image} />
               </div>
               <div className="conteinertextocard">
-                <h3 className="titulocard">{ciudad.name} </h3>
+                <h3 className="titulocard">{ciudad.city} </h3>
                 <p className="descripcioncard">- Country: {ciudad.country} </p>
                 <p className="descripcioncard">- Language: {ciudad.language}</p>
                 <p className="descripcioncard">- Coin: {ciudad.coin} </p>

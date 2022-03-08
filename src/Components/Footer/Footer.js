@@ -26,7 +26,7 @@ export default function App() {
         </div>
 
         <div className="btnfooter">
-          <LinkRouter to="*" className="linkresp">
+          <LinkRouter to="/Home" className="linkresp">
             <button class="learn-more">
               <span class="circle" aria-hidden="true">
                 <span class="icon arrow"></span>

@@ -18,7 +18,7 @@ export default function CardHover() {
           muted
           style={{
             position: "absolute",
-            width: "100%",
+            width: "98%",
             height: "230%",
             objectFit: "cover",
             transform: "translate (-0%, -0%)",

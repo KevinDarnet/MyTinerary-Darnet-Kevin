@@ -404,8 +404,9 @@ button:hover .button-text {
   z-index: 1;
 }
 .conteinerimgcard {
-  padding: 1rem;
+  padding: 0.4rem;
 }
+
 .imgcard {
   width: 100%;
   border-radius: 0.7rem;
@@ -457,13 +458,56 @@ button:hover .button-text {
   align-content: center;
   flex-wrap: wrap;
 }
+.conteinertextocarddetails {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+.carddetails {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  margin: 3rem;
+  padding: 1rem;
+  width: 80%;
+  height: auto;
+  border-radius: 0.7rem;
+  box-shadow: 3px 5px 20px 1px #6d6d6d88;
+  background-color: #161616;
+  z-index: 1;
+}
+.conteinercarddetalles {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100% !important;
+}
+.imgdetails {
+  width: 70%;
+  border-radius: 1rem;
+}
+.conteinerdatadetails {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: auto;
+}
+.conteinerimgdetails {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  width: 50%;
+}
 .video {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 .videocalltoaction {
   opacity: 0.3;
   margin-top: 10rem;
   margin-right: 10rem;
+  width: auto;
 }
 .inputsearch {
   width: 15rem;
