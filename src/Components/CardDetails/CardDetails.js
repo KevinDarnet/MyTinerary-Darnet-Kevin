@@ -23,7 +23,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function CardDetail(props) {
-  console.log(props.itineraries);
+  //console.log(props.itineraries);
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
