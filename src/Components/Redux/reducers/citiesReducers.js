@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const citiesReducer = (state = initialState, action) => {
-  console.log(action);
+  //console.log(action);
   switch (action.type) {
     case "fetch":
       return {

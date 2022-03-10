@@ -13,7 +13,7 @@ export default function App() {
     await axios
       .get("http://localhost:4000/api/allcities")
       .then((response) => {
-        console.table(response.data.response.ciudades);
+        //console.table(response.data.response.ciudades);
       })
       .catch((error) => {
         console.log(error);
