@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Footer from "../Footer/Footer";
 import CardDetail from "../CardDetails/CardDetails";
 import { connect } from "react-redux";
@@ -14,7 +14,6 @@ function DetailsCityId(props) {
   const { city, itineraries } = props;
   console.log(itineraries);
   console.log(city);
-
   useEffect(() => {
     props.findOneCity(id);
     props.itinerarioPorCiudad(id);
