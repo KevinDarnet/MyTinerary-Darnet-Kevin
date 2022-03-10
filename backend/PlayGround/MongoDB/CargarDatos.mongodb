@@ -1,0 +1,52 @@
+
+const database = 'MyTinerary';
+
+use(database);
+
+db.itinerarios.insertMany([
+  {
+"image": "https://estaticos.muyinteresante.es/media/cache/1140x_thumb/uploads/images/article/61a0a6785bafe84d6e827bfb/gran-muralla-china_0.jpg",
+  "name": "Great Wall of China",
+  "userimage": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Ram%C3%B3n_Garc%C3%ADa_Monteagudo.jpg",
+  "likes": "10",
+  "username": "ramon garcia",
+  "details": "Few cities in the world have served for so long as the political headquarters and cultural centre of an area as immense as China. ",
+  "price": "3",
+  "duration": "2h",
+  "hashtag": ["#Pekin","#greatwall"]
+    },
+    {
+"image": "https://image.arrivalguides.com/1230x800/19/30d05a00042421ee0944b72588a955e3.jpg",
+  "name": "Yonghe Temple",
+   "userimage": "https://media.lmneuquen.com/p/b4cdbb5d06ff29234d1add5b8e1655ae/adjuntos/195/imagenes/004/101/0004101329/1200x900/smart/iwaojpg.jpg",
+  "likes": "13",
+  "username": "Iwao Komiyama",
+  "details": "Visit to Yonghe Temple. One of the greatest buddhist praying temples",
+  "price": "2",
+  "duration": "1.5h",
+  "hashtag": ["#YongheTemple","#Pekin"]
+    },
+ {
+"image": "https://www.planetware.com/photos-large/EGY/egypt-pyramids-of-giza-chephren-pyramid.jpg",
+  "name": "Pyramid of Chephren",
+  "userimage": "https://www.agenciapacourondo.com.ar/sites/www.agenciapacourondo.com.ar/files/styles/flexslider_full/public/enfermeradolores_juliortiz_4247.jpg?itok=SVmRfiza",
+  "likes": "8",
+  "username": "Lujan Rodriguez",
+  "details": "Built by Khufu's son Khafre, it at first appears to be larger than his father's earlier pyramid as it stands on a higher piece of land. A considerable section of the original limestone casing has managed to be preserved on the apex of the pyramid.",
+  "price": "4",
+  "duration": "5h",
+  "hashtag": ["#Chephren","#Pyramid"]
+    },
+     {
+"image": "https://www.planetware.com/photos-large/EGY/egypt-pyramids-of-giza-solar-boat-museum.jpg",
+  "name": "Solar Boat Museum",
+   "userimage": "https://tork.news/__export/1646268891729/sites/tork/img/2022/03/02/bmw_crop1646268858784.jpg_570465182.jpg",
+  "likes": "6",
+  "username": "James Rodriguez",
+  "details": "Excavations on the south and east sides of the Pyramid of Cheops in 1954 brought to light five long cavities for boats, with a Solar Barque broken into more than a thousand pieces as a votive offering.",
+  "price": "2",
+  "duration": "1.5h",
+  "hashtag": ["#Solarboatmuseum","#Guiza"]
+    }
+]);
+

@@ -2,56 +2,21 @@ import * as React from "react";
 import Footer from "../Footer/Footer";
 import Video from "../Assests/videofondo.mp4";
 import NotFound from "../Assests/notfound.png";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import { connect } from "react-redux";
+import citiesActions from "../Redux/actions/citiesActions";
 /* NO FUNCIONA EL FOOTER EN CITIES */
 
-export default function Cities() {
-  const [ciudades, setCiudades] = useState([]); //impresion dinámica
-  const [todasLasCiudades, setTodasLasCiudades] = useState([]); //cambios de lo dinámico a través del search e impresion de lo buscado
+function Cities(props) {
   const [busqueda, setBusqueda] = useState(""); //cambios en el search
-  console.log(useParams());
-  const peticionGet = async () => {
-    //Peticion de informacion a la Api con Axios
-    await axios
-      .get("http://localhost:4000/api/allcities")
-      .then((response) => {
-        console.log(response.data.response.ciudades);
-        setCiudades(response.data.response.ciudades);
-        setTodasLasCiudades(response.data.response.ciudades);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const cambioBusqueda = (buscando) => {
-    //Paso como parámetro lo que se escribe en el intput para setbusqueda y filtrarbusqueda
-    setBusqueda(buscando.target.value);
-    filtrarBusqueda(buscando.target.value);
-  };
-
-  const filtrarBusqueda = (terminoBusqueda) => {
-    let resultadoBusqueda = todasLasCiudades.filter((elemento) => {
-      if (
-        elemento.city
-          .toString()
-          .toLowerCase()
-          .startsWith(terminoBusqueda.toLowerCase().trim())
-      ) {
-        return elemento;
-      }
-    });
-    setCiudades(resultadoBusqueda);
-    console.log(resultadoBusqueda);
-    console.log(ciudades._id);
+  const searching = (search) => {
+    setBusqueda(search.target.value);
+    props.filterCity(props.cities, search.target.value);
   };
 
   useEffect(() => {
-    peticionGet();
+    props.fetchearCities();
   }, []);
 
   return (
@@ -74,19 +39,19 @@ export default function Cities() {
       </div>
       <div className="conteinertituloysearch">
         <h1 className="titulocities">Look for your next adventure</h1>
-        <div class="inputsearch">
+        <div className="inputsearch">
           <input
             className="inputsearch"
             placeholder="Search City"
             value={busqueda}
-            onChange={cambioBusqueda}
+            onChange={searching}
           />
         </div>
       </div>
       <section className="conteinercard">
-        {ciudades.length !== 0 ? (
-          ciudades.map((ciudad) => (
-            <div class="card">
+        {props.citiesFilter?.length !== 0 ? (
+          props.citiesFilter.map((ciudad) => (
+            <div className="card" key={ciudad._id}>
               <div className="conteinerimgcard">
                 <img className="imgcard" src={ciudad.image} />
               </div>
@@ -97,7 +62,7 @@ export default function Cities() {
                 <p className="descripcioncard">- Coin: {ciudad.coin} </p>
                 <Link to={`/Details/${ciudad._id}`}>
                   <div className="contenedorbuttoncities">
-                    <button class="btndetails">Details</button>
+                    <button className="btndetails">Details</button>
                   </div>
                 </Link>
               </div>
@@ -116,3 +81,16 @@ export default function Cities() {
     </>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    cities: state.Data.cities,
+    citiesFilter: state.Data.citiesFilter,
+  };
+};
+
+const mapDispatchToProps = {
+  fetchearCities: citiesActions.fetchearCities,
+  filterCity: citiesActions.filterCity,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cities);

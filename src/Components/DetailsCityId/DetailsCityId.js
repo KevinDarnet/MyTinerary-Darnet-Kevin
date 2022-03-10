@@ -1,54 +1,51 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Footer from "../Footer/Footer";
-import CardDetail from "../CardDetails/CardDetail";
+import CardDetail from "../CardDetails/CardDetails";
+import { connect } from "react-redux";
+import citiesActions from "../Redux/actions/citiesActions";
+import itinerariesActions from "../Redux/actions/itinerariesActions";
 
-export default function DetailsCityId() {
+function DetailsCityId(props) {
   const { id } = useParams();
+  console.log(props);
 
-  const [cityId, setCityId] = useState();
+  const { city, itineraries } = props;
+  console.log(itineraries);
+  console.log(city);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/api/allcities")
-      .then((response) =>
-        setCityId(
-          response.data.response.ciudades.filter((cities) => cities._id === id)
-        )
-      );
+    props.findOneCity(id);
+    props.itinerarioPorCiudad(id);
   }, []);
 
   return (
     <>
-      <h1 className="titulocities">Details</h1>
       <div className="DetailsCard">
-        {cityId?.map((printID) => (
-          <div class="carddetails">
-            <div className="conteinerimgdetails">
-              <img className="imgdetails" src={printID.image} />
-            </div>
-            <div className="conteinertextocarddetails">
-              <div className="conteinerdatadetails">
-                <h3 className="titulocard">{printID.city} </h3>
-                <p className="descripcioncard">- Country: {printID.country}</p>
-                <p className="descripcioncard">
-                  - Language: {printID.language}
-                </p>
-                <p className="descripcioncard">- Coin: {printID.coin}</p>
-                <p className="descripcioncard">
-                  - Description: {printID.description}{" "}
-                </p>
-              </div>
+        {city._id && (
+          <div className="carddetails">
+            <h1 className="titulocard">{city.city} </h1>
+            <img className="imgdetails" src={city.image} />
+            <div className="conteinercarddetalles">
+              {<CardDetail itineraries={itineraries} />}
             </div>
           </div>
-        ))}
-      </div>
-      <div className="conteinercarddetalles">
-        <CardDetail />
+        )}
       </div>
       <Footer />;
     </>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    city: state.Data.city,
+    itineraries: state.itinerariesReducers.itineraries,
+  };
+};
+
+const mapDispatchToProps = {
+  findOneCity: citiesActions.findOneCity,
+  itinerarioPorCiudad: itinerariesActions.itinerarioPorCiudad,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(DetailsCityId);

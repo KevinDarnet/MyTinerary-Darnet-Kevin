@@ -5,9 +5,9 @@ use(dataBase)
 db.ciudades.drop();
 db.ciudades.insertMany([
  
-  {
-    "image":"https://tipsparatuviaje.com/wp-content/uploads/2019/08/gran-muralla-china.jpg",
-    "city": "Huairou",
+   {
+    "image":"https://drscdn.500px.org/photo/1001346056/m%3D900/v2?sig=b83869c3314f8ec210ee18d64a9d7adf9c361147094b75ba78ba4941b9ee3f3d",
+    "city": "Pekin",
     "description": "The Great Wall of China is a series of fortifications that were built across the historical northern borders of ancient Chinese states. It is the longest structure humans have ever built. It is about 21,196 kilometers long, 9.1 metres (30 feet) wide and 15 metres high.",
     "country": "China",
     "coin": "Renminbi",
@@ -123,6 +123,7 @@ db.ciudades.insertMany([
     "country": "Greece",
     "coin": "Euro",
     "language": "Greek"
+
   },
   {
     
@@ -133,4 +134,4 @@ db.ciudades.insertMany([
     "coin": "Rupia",
     "language": "Hindi"
   }
-]);
+]); 

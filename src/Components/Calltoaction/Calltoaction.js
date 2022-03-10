@@ -1,4 +1,4 @@
-import "../Styles/CardHover.css";
+import "../Styles/styles.css";
 import img1 from "../Assests/img1calltoaction.jpg";
 import img1up from "../Assests/img1up.jpg";
 import img2 from "../Assests/img2calltoaction.jpg";
@@ -11,23 +11,6 @@ import Video from "../Assests/fondocalltoaction.mp4";
 export default function CardHover() {
   return (
     <>
-      <div className="videocalltoaction">
-        <video
-          loop
-          autoPlay
-          muted
-          style={{
-            position: "absolute",
-            width: "98%",
-            height: "230%",
-            objectFit: "cover",
-            transform: "translate (-0%, -0%)",
-            zInedx: "-50",
-          }}
-        >
-          <source src={Video} type="video/mp4" />
-        </video>
-      </div>
       <div className="calltoactionprincipal">
         <div className="divcalltoactionfather">
           <div className="flip-card-hover">
