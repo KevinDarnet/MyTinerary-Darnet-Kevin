@@ -61,8 +61,8 @@ export default function App() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {Datos.map((datos) => (
-          <SwiperSlide>
+        {Datos.map((datos, index) => (
+          <SwiperSlide key={index}>
             <div className="div">
               <img className="imgcarousel" src={datos.image} />
               <h3 className="titulocarousel">{datos.name}</h3>

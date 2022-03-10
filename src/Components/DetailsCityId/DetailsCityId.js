@@ -9,11 +9,11 @@ import itinerariesActions from "../Redux/actions/itinerariesActions";
 
 function DetailsCityId(props) {
   const { id } = useParams();
-  console.log(props);
+  //console.log(props);
 
   const { city, itineraries } = props;
-  console.log(itineraries);
-  console.log(city);
+  //console.log(itineraries);
+  //console.log(city);
   useEffect(() => {
     props.findOneCity(id);
     props.itinerarioPorCiudad(id);
