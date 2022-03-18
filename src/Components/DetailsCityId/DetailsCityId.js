@@ -24,8 +24,14 @@ function DetailsCityId(props) {
       <div className="DetailsCard">
         {city._id && (
           <div className="carddetails">
-            <h1 className="titulocard">{city.city} </h1>
-            <img className="imgdetails" src={city.image} />
+            <div className="tituloItinerario">
+              <div className="descriptionitinerarytitulo">
+                <h1 className="titulocard">{city.city} </h1>
+                <p className="titulocard">Coin = {city.coin} </p>
+                <p className="titulocard">Country = {city.country} </p>
+              </div>
+              <img className="imgdetails" src={city.image} />
+            </div>
             <div className="conteinercarddetalles">
               {<CardDetail itineraries={itineraries} />}
             </div>

@@ -60,8 +60,8 @@ function SignUp(props) {
             aria-label=".form-select-sm example"
             onChange={select}
           >
-            {paises.map((country) => (
-              <option>{country}</option>
+            {paises.map((country, index) => (
+              <option key={index}>{country}</option>
             ))}
           </select>
         </div>

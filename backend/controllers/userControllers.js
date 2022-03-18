@@ -69,7 +69,7 @@ const usersControllers = {
             success: false,
             from: "signup",
             message:
-              "Ya has realizado tu SignUp de esta forma por favor realiza SignIn",
+              "You have already made your SignUp in this way, please SignIn",
           });
         } else {
           const contraseñaHasheada = bcryptjs.hashSync(password, 10);
@@ -83,7 +83,7 @@ const usersControllers = {
               success: true,
               from: "signup",
               message:
-                "Te enviamos un email para validarlo, por favor verifica tu casilla para completar el signUp y agregarlo a tus metodos de SignIN ",
+                "We sent you an email to validate it, please check your box to complete the signUp and add it to your SignIN methods ",
             });
           } else {
             usuarioExiste.save();
@@ -119,7 +119,7 @@ const usersControllers = {
           res.json({
             success: true,
             from: "signup",
-            message: "Felicitaciones se ha creado tu usuario con " + from,
+            message: "Congratulations, your user has been created with " + from,
           }); // AGREGAMOS MENSAJE DE VERIFICACION
         } else {
           //PASAR EMAIL VERIFICADO A FALSE
@@ -130,7 +130,7 @@ const usersControllers = {
             success: true,
             from: "signup",
             message:
-              "Te enviamos un email para validarlo, por favor verifica tu casilla para completar el signUp ",
+              "We sent you an email to validate it, please check your box to complete the signUp ",
           }); // AGREGAMOS MENSAJE DE VERIFICACION
         }
       }
@@ -138,7 +138,7 @@ const usersControllers = {
       console.log(error);
       res.json({
         success: false,
-        message: "Algo a salido mal intentalo en unos minutos",
+        message: "Something went wrong try again in a few minutes",
       }); //CAPTURA EL ERROR
     }
   },
@@ -154,7 +154,7 @@ const usersControllers = {
         // PRIMERO VERIFICA QUE EL USUARIO EXISTA
         res.json({
           success: false,
-          message: "Tu usuarios no ha sido registrado realiza signUp",
+          message: "Your users have not been registered signUp",
         });
       } else {
         if (from !== "form-Signup") {
@@ -186,9 +186,9 @@ const usersControllers = {
               success: false,
               from: from,
               message:
-                "No has realizado el registro con " +
+                "You have not registered with " +
                 from +
-                "si quieres ingresar con este metodo debes hacer el signUp con " +
+                "If you want to enter with this method you must do the signUp with " +
                 from,
             });
           }
@@ -215,13 +215,13 @@ const usersControllers = {
                 success: true,
                 from: from,
                 response: { token, userData },
-                message: "Bienvenido nuevamente " + userData.fullName,
+                message: "Welcome again " + userData.fullName,
               });
             } else {
               res.json({
                 success: false,
                 from: from,
-                message: "El usuario o el password no coinciden",
+                message: "The username or password do not match",
               });
             }
           } else {
@@ -229,7 +229,7 @@ const usersControllers = {
               success: false,
               from: from,
               message:
-                "No has verificado tu email, por favor verifica ti casilla de emails para completar tu signUp",
+                "You have not verified your email, please check your email box to complete your signUp",
             });
           }
         } //SI NO ESTA VERIFICADO
@@ -238,7 +238,7 @@ const usersControllers = {
       console.log(error);
       res.json({
         success: false,
-        message: "Algo a salido mal intentalo en unos minutos",
+        message: "Something went wrong try again in a few minutes",
       });
     }
   },
@@ -261,12 +261,12 @@ const usersControllers = {
 
           from: "token",
         },
-        message: "Bienvenido nuevamente " + req.user.fullName,
+        message: "Welcome again " + req.user.fullName,
       });
     } else {
       res.json({
         success: false,
-        message: "Por favor realiza nuevamente signIn",
+        message: "Please signIn again",
       });
     }
   },

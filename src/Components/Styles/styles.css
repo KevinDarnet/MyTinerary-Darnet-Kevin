@@ -499,9 +499,19 @@ button:hover .button-text {
   align-items: center;
   width: 100% !important;
 }
+.tituloItinerario {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.descriptionitinerarytitulo {
+  display: flex;
+  flex-direction: column;
+}
 .imgdetails {
-  width: 70%;
-  height: 25rem;
+  width: 70% 10%;
+  height: 15rem;
   object-position: center center;
   object-fit: cover;
   border-radius: 1rem;
