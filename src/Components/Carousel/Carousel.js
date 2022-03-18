@@ -1,11 +1,10 @@
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../Styles/styles.css";
 import Datos from "../Json/datos";
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Navigation } from "swiper";
 import axios from "axios";
 
 export default function App() {
@@ -54,11 +53,8 @@ export default function App() {
           delay: 3500,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay, Navigation]}
         className="mySwiper"
       >
         {Datos.map((datos, index) => (

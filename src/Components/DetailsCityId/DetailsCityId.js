@@ -13,7 +13,7 @@ function DetailsCityId(props) {
 
   const { city, itineraries } = props;
   //console.log(itineraries);
-  //console.log(city);
+  console.log(city);
   useEffect(() => {
     props.findOneCity(id);
     props.itinerarioPorCiudad(id);

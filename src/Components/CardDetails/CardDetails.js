@@ -23,7 +23,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function CardDetail(props) {
-  //console.log(props.itineraries);
+  console.log(props.itineraries);
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -38,14 +38,18 @@ export default function CardDetail(props) {
               <div className="conteinerimguser">
                 <img className="imgitinerario" src={info.userimage} />
               </div>
-              <CardHeader title={info.username} />
+              <CardHeader className="titulotItinerary" title={info.username} />
               <div className="infoitinerario">
                 <div className="tituloeimgitinerario">
                   <div>
-                    <h2>{info.name}</h2>
-                    <h3>Price: {"💵".repeat(parseInt(info.price))}</h3>
-                    <h3>Duration: {info.duration} </h3>
-                    <h3>{info.hashtag}</h3>
+                    <h2 className="titulotItinerary">{info.name}</h2>
+                    <h3 className="titulotItinerary">
+                      Price: {"💵".repeat(parseInt(info.price))}
+                    </h3>
+                    <h3 className="titulotItinerary">
+                      Duration: {info.duration}{" "}
+                    </h3>
+                    <h3 className="titulotItinerary">{info.hashtag}</h3>
                   </div>
                   <div>
                     <img className="imgbandera" src={info.flag} />
@@ -60,7 +64,7 @@ export default function CardDetail(props) {
                 variant="body3"
                 color="text.secondary"
               ></Typography>
-              <CardContent></CardContent>
+
               <CardActions disableSpacing>
                 <ExpandMore
                   expand={expanded}

@@ -3,7 +3,7 @@ const Itinerary = require("../models/itineraries");
 const itineraryController = {
   cargarItinerary: async (req, res) => {
     console.log(req);
-    const data = await Itinerary.find();
+    const data = await Itinerary.find().populate("cityId");
     res.json({
       response: data,
     });

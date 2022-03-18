@@ -389,7 +389,19 @@ button:hover .button-text {
   text-align: center;
   width: 100%;
 }
+.Selectcountry {
+  padding: 0.3rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+}
 
+.text-center {
+  display: flex;
+}
+
+.divtitleform {
+  text-align: center;
+}
 .arrowdown {
   width: 2rem;
   height: 2rem;
@@ -558,6 +570,10 @@ button:hover .button-text {
   font-weight: 500;
   color: black;
   background-color: rgb(238, 238, 238);
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
 }
 
 .btndetails:hover {

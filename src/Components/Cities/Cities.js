@@ -10,10 +10,13 @@ import citiesActions from "../Redux/actions/citiesActions";
 
 function Cities(props) {
   const [busqueda, setBusqueda] = useState(""); //cambios en el search
+
   const searching = (search) => {
     setBusqueda(search.target.value);
     props.filterCity(props.cities, search.target.value);
   };
+
+  //console.log(props);
 
   useEffect(() => {
     props.fetchearCities();

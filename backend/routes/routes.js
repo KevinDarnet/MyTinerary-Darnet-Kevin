@@ -16,5 +16,4 @@ Router.route(`/allcities/:id`)
   .delete(borrarCiudad)
   .put(modificarCiudad)
   .get(pedirCity);
-
 module.exports = Router;
