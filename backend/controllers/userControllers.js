@@ -180,7 +180,7 @@ const usersControllers = {
               success: true,
               from: from,
               response: { token, userData },
-              message: "Bienvenido nuevamente " + userData.fullName,
+              message: "Welcome " + userData.fullName,
             });
           } else {
             res.json({

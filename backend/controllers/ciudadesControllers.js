@@ -17,7 +17,7 @@ const ciudadesControllers = {
     });
   },
   cargarCiudad: async (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     const { name, country, coin } = req.body;
     new Ciudades({ name, country, coin })
       .save()
