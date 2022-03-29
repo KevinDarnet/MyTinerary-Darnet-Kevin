@@ -6,21 +6,21 @@ import { connect } from "react-redux";
 import citiesActions from "../Redux/actions/citiesActions";
 import itinerariesActions from "../Redux/actions/itinerariesActions";
 import ItineraryDetails from "../DetailsCityId/ItineraryDetails";
+import { useState } from "react";
 
 function DetailsCityId(props) {
   const { id } = useParams();
+
   console.log(props);
 
-  const { city, itineraries, user } = props;
-  console.log(city);
-  console.log(itineraries);
-  console.log(user);
+  const { city, user, itineraries } = props;
+
   useEffect(() => {
     props.findOneCity(id);
     props.itinerarioPorCiudad(id);
   }, []);
 
-  console.log(itineraries);
+  console.log(props.itineraries);
 
   return (
     <>
@@ -33,13 +33,9 @@ function DetailsCityId(props) {
               </div>
               <img className="imgdetails" src={city.image} />
             </div>
-            <div className="conteinercarddetalles">
-              {/*{<CardDetail itineraries={itineraries} />}
-               */}
 
-              {itineraries?.map((itinerary) => (
-                <ItineraryDetails itinerary={itinerary} />
-              ))}
+            <div className="d-flex flex-column">
+              <ItineraryDetails />
             </div>
           </div>
         )}

@@ -9,13 +9,12 @@ const activitiesActions = {
     };
   },
   findOneActivityPerItinerary: (id) => {
-    console.log(id);
     return async (dispatch, getState) => {
       const res = await axios.get(
         `http://localhost:4000/api/itineraryActivity/${id}`
       );
       console.log(res);
-      dispatch({ type: "fetchOneActiivtyPerCity", payload: res.data.response });
+      dispatch({ type: "fetchOneActivtyPerCity", send: res.data.response });
     };
   },
 };

@@ -2,31 +2,17 @@ const Activities = require("../models/activities");
 
 const activitiesController = {
   getActivities: async (req, res) => {
-    //console.log(req);
     const data = await Activities.find().populate("itineraryId");
     res.json({
       response: data,
     });
   },
-  /* activitiesPerCity: async (req, res) => {
-    try {
-      const ActivitiesPerCity = await Activities.find({
-        itineraryId: req.query.itineraryId,
-      });
-      res.json({ response: ActivitiesPerCity });
-    } catch (error) {
-      console.log(error);
-    }
-  }, */
+
   getActivityPerItinerary: async (req, res) => {
-    console.log(req.params.id);
-    const id = req.params.id;
     try {
-      const data = await Activities.find({ itineraryId: id });
-      console.log(data);
+      const data = await Activities.find({ itineraryId: req.params.id });
       res.json({ success: true, response: data });
     } catch (error) {
-      console.log(error);
       res.json({ success: false, error: error.message });
     }
   },

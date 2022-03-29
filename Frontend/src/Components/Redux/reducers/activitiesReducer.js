@@ -11,10 +11,10 @@ const activitiesReducer = (state = initialState, action) => {
         ...state,
         activities: action.payload,
       };
-    case "fetchOneActiivtyPerCity":
+    case "fetchOneActivtyPerCity":
       return {
         ...state,
-        oneActivityPerItinerary: action.payload,
+        oneActivityPerItinerary: action.send,
       };
     default:
       return state;

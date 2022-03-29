@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 import activitiesActions from "../Redux/actions/activitiesActions";
 import "../Styles/styles.css";
 
 function Activity(props) {
-  console.log(props.activity);
-  console.log(props.itineraries);
+  console.log(props.id);
   console.log(props.oneActivityPerItinerary);
-  console.log(props.itineraryId);
 
   useEffect(() => {
     props.findOneActivityPerItinerary(props.id);
@@ -15,12 +14,16 @@ function Activity(props) {
 
   return (
     <>
-      {props.activity?.map((activity) => (
-        <div>
-          <h2 className="activity">{activity?.name}</h2>
-          <img className="imgActivities" src={activity?.image} />
-        </div>
-      ))}
+      {props.oneActivityPerItinerary ? (
+        props.oneActivityPerItinerary.map((activity) => (
+          <div>
+            <h2 className="activity">{activity.name} </h2>
+            <img className="imgActivities" src={activity.image} />
+          </div>
+        ))
+      ) : (
+        <h3 className="card-title2">ERROR</h3>
+      )}
     </>
   );
 }

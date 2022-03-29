@@ -14,6 +14,7 @@ const {
   borrarItinerary,
   modificarItinerary,
   likeDislike,
+  prueba,
 } = itinerariesControllers;
 
 itinerariesRouter
@@ -27,19 +28,20 @@ itinerariesRouter
   .put(modificarItinerary)
   .get(subirItinerary);
 //LIKES ROUTES
-Router.route("/api/like/:id").put(
-  passport.authenticate("jwt", { session: false }),
-  likeDislike
-);
+itinerariesRouter
+  .route("/like/:id")
+  .put(passport.authenticate("jwt", { session: false }), likeDislike)
+  .get(prueba);
+
 //Itineraries Comments ROUTES
-Router.route("/itinerary/comment")
+itinerariesRouter
+  .route("/itinerary/comment")
   .post(passport.authenticate("jwt", { session: false }), addComment)
   .put(passport.authenticate("jwt", { session: false }), modifiComment);
 
-Router.route("/itinerary/comment/:id").post(
-  passport.authenticate("jwt", { session: false }),
-  deleteComment
-);
+itinerariesRouter
+  .route("/itinerary/comment/:id")
+  .post(passport.authenticate("jwt", { session: false }), deleteComment);
 itinerariesRouter.route(`/cityItineraries`).get(cargarCiudadItinerary);
 
 module.exports = itinerariesRouter;

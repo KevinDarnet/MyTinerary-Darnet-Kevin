@@ -11,13 +11,16 @@ const itinerariesActions = {
       dispatch({ type: ITINERARIES_GET, payload: res.data.response });
     };
   },
+
   likeDislike: (itineraryId) => {
-    const token = localStorage.getItem("token");
     return async () => {
       try {
+        const token = localStorage.getItem("token");
+
         let response = await axios.put(
-          `http://localhost:4000/api/like/` + itineraryId,
+          `http://localhost:4000/api/like/${itineraryId}`,
           {},
+
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -25,7 +28,10 @@ const itinerariesActions = {
           }
         );
         console.log(response);
-        return response;
+        return {
+          success: true,
+          response: response,
+        };
       } catch (error) {
         console.log(error);
       }

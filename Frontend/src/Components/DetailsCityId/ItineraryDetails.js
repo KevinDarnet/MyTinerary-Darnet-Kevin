@@ -8,149 +8,159 @@ import Activity from "../Activity/Activity";
 import activitiesActions from "../Redux/actions/activitiesActions";
 import Comment from "../Coment/Comment";
 import Comments from "../Comments/Comments";
+import Swal from "sweetalert2";
 
 const ItineraryDetails = (props) => {
-  console.log(props);
-  const { id } = useParams();
-  const [itineraries, setItineraries] = useState();
+  console.log(props.id);
+  console.log(props.itineraries._id);
 
   const [reload, setReload] = useState(false);
-  const [oneActivityPerItinerary, setoneActivityPerItinerary] = useState([]);
-  const [likes, setLikes] = useState(props.itinerary.likes);
 
-  console.log(oneActivityPerItinerary);
+  const [activities, setActivities] = useState([]);
 
-  useEffect(() => {
-    props.itinerarioPorCiudad(id).then((data) => setLikes(data));
-  }, [reload]);
-  console.log(props.itineraries); //Array de los itinerarios
-  console.log(props.itinerary); //Los dos itinerarios mapeados en DetailsCitiId
-  console.log(props.user);
+  const id = useParams();
+  console.log(id);
 
   useEffect(() => {
-    props
-      .findOneActivityPerItinerary(props.itinerary._id)
-      .then((res) => setoneActivityPerItinerary(res));
-  }, []);
-  console.log(props.oneActivityPerItinerary);
+    props.findOneActivityPerItinerary(props.itineraries._id).then((data) => {
+      setActivities(data);
+    });
+  }, [props.itineraries]);
 
-  async function likesOrDislikes() {
-    await props.likeDislike(props.itineraries._id);
+  async function likesOrDislikes(id) {
+    console.log(id);
+    await props.likeDislike(id);
+    props.itinerarioPorCiudad(id);
     setReload(!reload);
   }
 
+  async function noUser() {
+    Swal.fire({
+      icon: "warning",
+      title: "You have to be logged to like it",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
   return (
     <>
-      <div className="card2 mb-3 cardDetail2">
-        <div className="ConteinerUser">
-          <img className="imguser" src={props.itinerary?.userimage} />
+      {props.itineraries.length ? (
+        props.itineraries.map((itinerary, index) => (
+          <div className="card2 mb-3 cardDetail2">
+            <div className="ConteinerUser">
+              <img className="imguser" src={itinerary?.userimage} />
 
-          <h2 className="card-user">{props.itinerary?.username}</h2>
-        </div>
-        <h1 className="card-title2">{props.itinerary?.name}</h1>
+              <h2 className="card-user">{itinerary?.username}</h2>
+            </div>
+            <h1 className="card-title2">{itinerary?.name}</h1>
 
-        <div>
-          <img className="imgitinerary" src={props.itinerary?.image} />
-        </div>
-        <div className="card-body">
-          <p className="card-p2">Description: {props.itinerary?.details} </p>
+            <div>
+              <img className="imgitinerary" src={itinerary?.image} />
+            </div>
+            <div className="card-body">
+              <p className="card-p2">Description: {itinerary?.details} </p>
+              <p className="card-p2">Duration: {itinerary?.duration}</p>
+              <p className="card-p2">Hashtag: {itinerary?.hashtag}</p>
+              <p className="card-p2">
+                Price:{"💵".repeat(parseInt(itinerary.price))}
+              </p>
 
-          <p className="card-p2">Duration: {props.itinerary?.duration}</p>
-          <p className="card-p2">Hashtag: {props.itinerary?.hashtag}</p>
-
-          <div className="likeDislike">
-            {props.user ? (
-              <button onClick={likesOrDislikes}>
-                {likes?.includes(props.user.id) ? (
+              <div className="likeDislike">
+                {props.user ? (
+                  <button onClick={likesOrDislikes}>
+                    {itinerary.likes.includes(props.user.id) ? (
+                      <span
+                        style={{ color: "red", fontSize: 30 }}
+                        className="material-icons"
+                      >
+                        favorite
+                      </span>
+                    ) : (
+                      <span style={{ fontSize: 30 }} className="material-icons">
+                        favorite_border
+                      </span>
+                    )}
+                  </button>
+                ) : (
                   <span
-                    style={{ color: "red", fontSize: 30 }}
+                    onClick={noUser}
+                    style={{ fontSize: 30 }}
                     className="material-icons"
                   >
-                    favorite
-                  </span>
-                ) : (
-                  <span style={{ fontSize: 30 }} className="material-icons">
                     favorite_border
                   </span>
                 )}
-              </button>
-            ) : (
-              <span style={{ fontSize: 30 }} className="material-icons">
-                favorite_border
-              </span>
-            )}
-            <h3 style={{ color: "black ", fontSize: 30 }}>{likes?.length}</h3>
-          </div>
-        </div>
-        <div className="accordion" id={props.itinerary?.name}>
-          <div className="accordion-item">
-            <h2
-              className="accordion-header"
-              id={"heading" + props.itinerary?.name}
-            ></h2>
-            <div
-              id={props.itinerary?.name.replace(/ /g, "").slice(0, 5)}
-              className="accordion-collapse collapse "
-              aria-labelledby={"heading" + props.itinerary?.name}
-              data-bs-parent={"#" + props.itinerary?.name}
-            ></div>
-          </div>
-        </div>
-        <div className="accordion" id={props.itinerary?.name}>
-          <div className="accordion-item">
-            <h2
-              className="accordion-header"
-              id={"heading" + props.itinerary?.name}
-            >
-              <button
-                className="accordion-button collapsed acordion "
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target={
-                  "#" + props.itinerary?.name.replace(/ /g, "").slice(0, 5)
-                }
-                aria-expanded="false"
-                aria-controls={props.itinerary?.name
-                  .replace(/ /g, "")
-                  .slice(0, 5)}
-              >
-                Activities
-                <span
-                  className="material-icons ml-auto arrow2 collapsed "
-                  data-bs-toggle="collapse"
-                  aria-controls={props.itinerary?.name
-                    .replace(/ /g, "")
-                    .slice(0, 5)}
-                  data-bs-target={
-                    "#" + props.itinerary?.name.replace(/ /g, "").slice(0, 5)
-                  }
+                <h3 style={{ color: "black ", fontSize: 30 }}>
+                  {itinerary.likes.length}
+                </h3>
+              </div>
+            </div>
+            <div className="accordion" id={itinerary?.name}>
+              <div className="accordion-item">
+                <h2
+                  className="accordion-header"
+                  id={"heading" + itinerary?.name}
+                ></h2>
+                <div
+                  id={itinerary?.name.replace(/ /g, "").slice(0, 5)}
+                  className="accordion-collapse collapse "
+                  aria-labelledby={"heading" + itinerary?.name}
+                  data-bs-parent={"#" + itinerary?.name}
+                ></div>
+              </div>
+            </div>
+            <div className="accordion" id={itinerary?.name}>
+              <div className="accordion-item">
+                <h2
+                  className="accordion-header"
+                  id={"heading" + itinerary?.name}
                 >
-                  keyboard_arrow_down
-                </span>
-              </button>
-            </h2>
-            <div
-              id={props.itinerary?.name.replace(/ /g, "").slice(0, 5)}
-              className="accordion-collapse collapse "
-              aria-labelledby={"heading" + props.itinerary?.name}
-              data-bs-parent={"#" + props.itinerary?.name}
-            >
-              <div className="accordion-body  ">
-                <Activity activity={props.oneActivityPerItinerary} />
-                {props.itinerary.comments.map((comment) => (
-                  <Comments
-                    itineraryId={props.itinerary._id}
-                    commentId={comment._id}
-                    comment={comment}
-                    key={comment._id}
-                  />
-                ))}
-                <Comment itineraryId={props.itinerary._id} />
+                  <button
+                    className="accordion-button collapsed acordion "
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target={
+                      "#" + itinerary?.name.replace(/ /g, "").slice(0, 5)
+                    }
+                    aria-expanded="false"
+                    aria-controls={itinerary?.name
+                      .replace(/ /g, "")
+                      .slice(0, 5)}
+                  >
+                    Activities
+                    <span
+                      className="material-icons ml-auto arrow2 collapsed "
+                      data-bs-toggle="collapse"
+                      aria-controls={itinerary?.name
+                        .replace(/ /g, "")
+                        .slice(0, 5)}
+                      data-bs-target={
+                        "#" + itinerary?.name.replace(/ /g, "").slice(0, 5)
+                      }
+                    >
+                      keyboard_arrow_down
+                    </span>
+                  </button>
+                </h2>
+                <div
+                  id={itinerary?.name.replace(/ /g, "").slice(0, 5)}
+                  className="accordion-collapse collapse "
+                  aria-labelledby={"heading" + itinerary?.name}
+                  data-bs-parent={"#" + itinerary?.name}
+                >
+                  <div className="accordion-body" key={itinerary._id}>
+                    <Activity id={itinerary._id} key={index} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        ))
+      ) : (
+        <h3 className="card-title2">
+          WE COULD NOT FIND ANY ITINERARY FOR THIS CITY
+        </h3>
+      )}
     </>
   );
 };
