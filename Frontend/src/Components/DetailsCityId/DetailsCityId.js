@@ -12,11 +12,8 @@ import Activities from "./Activities";
 
 const DetailsCityId = (props) => {
   
-
   const [reload, setReload] = useState();
-
   const { city } = props;
-
   const { id } = useParams();
 
   async function likesOrDislikes(id) {
