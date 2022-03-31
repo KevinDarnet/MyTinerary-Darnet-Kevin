@@ -21,7 +21,7 @@ activitiesRouter
   .delete(deleteActivity)
   .put(modifyActivity)
   .get(getOneActivity);
-
+  
 activitiesRouter.route(`/itineraryActivities/:id`).get(getItineraryActivities);
 
 module.exports = activitiesRouter;

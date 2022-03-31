@@ -48,8 +48,7 @@ const itineraryController = {
     console.log(req.params.id);
     console.log(req.user);
     const user = req.user.id; //LLEGA POR PASSPORT
-    /*     console.log(user);
-     */ try {
+      try {
       await Itinerarios.findOne({ _id: req.params.id })
         .then((itinerary) => {
           /*           console.log(itinerary);

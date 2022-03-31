@@ -6,14 +6,14 @@ const activityController = {
      */ const data = await Activity.find()
     res.json({
       response: data,
-    });
+    })
   },
 
   getItineraryActivities: async (req, res) => {
     try {
       const activityPerItinerary = await Activity.find({
         itineraryId: req.params.id,
-      });
+      })
       res.json({
         success: true,
         response: activityPerItinerary,
@@ -24,11 +24,11 @@ const activityController = {
   },
   getOneActivity: async (req, res) => {
     console.log("req.params.id req.params.id req.params.id req.params.id");
-    console.log(req.params.id);
+    console.log(req.params.id).populate("activities")
     const id = req.params.id;
     const data = await Activity.findOne({
       _id: id,
-    }); /* .populate("itineraryId"); */
+    })
     res.json({ response: data });
     console.log("data data data data data");
     console.log(data);

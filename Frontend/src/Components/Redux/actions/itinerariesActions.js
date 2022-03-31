@@ -17,7 +17,7 @@ const itinerariesActions = {
     return async () => {
       try {
         let response = await axios.put(
-          `http://localhost:4000/api/like/:id${id}`,
+          `http://localhost:4000/api/like/${id}`,
           {},
 
           {

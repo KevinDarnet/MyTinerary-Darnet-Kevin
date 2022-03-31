@@ -8,11 +8,7 @@ import Footer from "../Footer/Footer";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import "../Styles/itineraryDetails.css";
-import activitiesActions from "../Redux/actions/activitiesActions";
 import Activities from "./Activities";
-import Comment from "../Comments/comment";
-import Comments from "../Comments/comments";
-import Itinerary from "./Itinerary"
 
 const DetailsCityId = (props) => {
   
@@ -23,8 +19,9 @@ const DetailsCityId = (props) => {
 
   const { id } = useParams();
 
-  async function likesOrDislikes(event) {
-    await props.likeDislike(event.target.id);
+  async function likesOrDislikes(id) {
+    console.log(id)
+    await props.likeDislike(id);
     setReload(!reload);
   }
 
@@ -82,7 +79,7 @@ const DetailsCityId = (props) => {
                           <button
                             className="buttonLike"
                             id={itinerary?._id}
-                            onClick={likesOrDislikes}
+                            onClick={()=>likesOrDislikes(itinerary._id)}
                           >
                             {itinerary?.likes.includes(props.user.id) ? (
                               <button
@@ -171,18 +168,10 @@ const DetailsCityId = (props) => {
                         >
                           <div className="activitiesDetail accordion-body">
                       
-                          <Itinerary id={itinerary._id} reload={reload} />
+                          <Activities id={itinerary._id} />
 
                           </div>
-                    {/* {itinerary.comments.map((comment) => (
-                            <Comments
-                              itineraryId={props.id}
-                              commentId={comment._id}
-                              comment={comment}
-                              key={comment._id}
-                            />
-                          ))}
-                          <Comment itineraryId={props.id} /> */}
+                 
                         </div>
                       </div>
                     </div>

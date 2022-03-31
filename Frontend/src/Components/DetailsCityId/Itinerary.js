@@ -12,7 +12,6 @@ console.log(props)
       }, []);
   return (
       <div>
-           <Activities />
       </div>
   )
 }

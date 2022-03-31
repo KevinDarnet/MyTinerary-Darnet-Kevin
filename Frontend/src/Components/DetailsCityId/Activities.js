@@ -1,15 +1,19 @@
 import * as React from "react";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import activitiesActions from "../Redux/actions/activitiesActions";
 
-export default function Activities(props) {
+function Activities(props) {
   console.log(props);
-  
+
+  useEffect(() => {
+    props.findOneActivityPerItinerary(props.id);
+  }, []);
   return (
     <>
-      {props.activities ? (
-        props.activities.map((activity) => (
-          
+      {props.oneActivityPerItinerary ? (
+        props.oneActivityPerItinerary.map((activity) => (
           <div>
-          {console.log(activity)}
             <h2 className="activity">{activity.name} </h2>
             <div className="divActivities">
               <img className="imgActivities" src={activity.image} />
@@ -24,5 +28,13 @@ export default function Activities(props) {
     </>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    oneActivityPerItinerary: state.activitiesReducer.oneActivityPerItinerary,
+  };
+};
 
-
+const mapDispatchToProps = {
+  findOneActivityPerItinerary: activitiesActions.findOneActivityPerItinerary,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Activities);
