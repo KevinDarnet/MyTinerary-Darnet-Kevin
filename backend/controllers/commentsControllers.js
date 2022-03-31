@@ -1,72 +1,73 @@
-const itinerary = require("../models/itineraries");
+const Itineraries = require("../models/itineraries");
+
 const commentsControllers = {
   addComment: async (req, res) => {
-    const { itinerary, comment } = req.body.comment;
-    const user = req.user._id;
     try {
-      const nuevoComment = await itinerary
-        .findOneAndUpdate(
-          { _id: itinerary },
-          { $push: { comments: { comment: comment, userID: user } } },
-          { new: true }
-        )
-        .populate("comments.userID", { fullName: 1 });
+      const nuevoComment = await Itineraries.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $push: {
+            comments: { comment: req.body.comment, userID: req.user._id },
+          },
+        },
+        { new: true }
+      ).populate("comments.userID", "name");
       res.json({
         success: true,
-        response: { nuevoComment },
+        response: nuevoComment,
         message: "gracias por dejarnos tu comentario",
       });
     } catch (error) {
       console.log(error);
       res.json({
         success: false,
-        message: "Algo a salido mal intentalo en unos minutos",
+        message: "Algo ha salido mal intentalo en unos minutos",
       });
     }
   },
-  modifiComment: async (req, res) => {
-    const { commentID, comment } = req.body.comment;
-    const user = req.user._id;
+
+  modifyComment: async (req, res) => {
+    const { comment } = req.body;
     try {
-      const newComment = await itinerary.findOneAndUpdate(
-        { "comments._id": commentID },
+      const modifyComment = await Itineraries.findOneAndUpdate(
+        { "comments._id": req.params.id },
         { $set: { "comments.$.comment": comment } },
         { new: true }
       );
-      console.log(newComment);
-      res.json({
-        success: true,
-        response: { newComment },
-        message: "tu comentario a sido modificado",
-      });
+      if (modifyComment) {
+        res.json({ success: true, response: modifyComment });
+      } else {
+        res.json({ error: "el comentario no se ha encontrado" });
+      }
     } catch (error) {
-      console.log(error);
-      res.json({
-        success: true,
-        message: "Algo a salido mal intentalo en unos minutos",
-      });
+      res.json({ success: false, response: error.message });
     }
   },
+
   deleteComment: async (req, res) => {
-    const id = req.params.id;
-    const user = req.user._id;
     try {
-      const deleteComment = await itinerary.findOneAndUpdate(
-        { "comments._id": id },
-        { $pull: { comments: { _id: id } } },
+      const deleteComment = await Itineraries.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pull: {
+            comments: {
+              _id: req.params.comment,
+            },
+          },
+        },
         { new: true }
       );
-      console.log(deleteComment);
-      res.json({
+      /*       console.log(deleteComment);
+       */ res.json({
         success: true,
-        response: { deleteComment },
+        response: deleteComment,
         message: "has eliminado el comentario",
       });
     } catch (error) {
       console.log(error);
       res.json({
         success: false,
-        message: "Algo a salido mal intentalo en unos minutos",
+        message: "Algo ha salido mal intentalo en unos minutos",
       });
     }
   },

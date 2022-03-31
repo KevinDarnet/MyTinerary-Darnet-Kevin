@@ -1,6 +1,4 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
 import { connect } from "react-redux";
 import citiesActions from "../Redux/actions/citiesActions";
 import itinerariesActions from "../Redux/actions/itinerariesActions";
@@ -29,9 +27,8 @@ const Comments = (props) => {
     console.log(modify);
     setModify(!modify);
     await props.modifiComment(commentId, commentData);
-    props.getOneItinerary(id);
     props.findOneCity(id);
-    props.itinerariesPerCity(id);
+    props.itinerarioPorCiudad(id);
     setReload(!reload);
   }
   async function eliminarComentario(commentId) {
@@ -47,17 +44,16 @@ const Comments = (props) => {
 
     if (awaitDelete.success) {
       props.findOneCity(id);
-      props.itinerariesPerCity(id);
-      console.log("eliminado");
-      // props.findOneCity(id)
+      props.itinerarioPorCiudad(id);
+      console.log("eliminadoOoOOo");
     }
   }
 
   console.log(props.comment.comment);
   return (
     <>
-      {props.comment.userID?._id !== props.user?.id ? (
-        <div className="card cardComments " key={props.comment._id}>
+      {props.comment.userID?._id && props.user !== props.user?.id ? (
+        <div className="card3 cardComments " key={props.comment._id}>
           <div className="card-header cardHeader">
             {props.comment.userID?.name}
           </div>
@@ -66,7 +62,7 @@ const Comments = (props) => {
           </div>
         </div>
       ) : (
-        <div className="card cardComments">
+        <div className="card3 cardComments">
           <div className="card-header cardHeader">
             <p>{props.comment.userID.name}</p>
           </div>
@@ -120,13 +116,11 @@ const Comments = (props) => {
 
 const mapDispatchToProps = {
   findOneCity: citiesActions.findOneCity,
-  getOneItinerary: itinerariesActions.getOneItinerary,
-  itinerariesPerCity: itinerariesActions.itinerariesPerCity,
+  itinerarioPorCiudad: itinerariesActions.itinerarioPorCiudad,
   addComment: commentsActions.addComment,
   modifiComment: commentsActions.modifiComment,
   deleteComment: commentsActions.deleteComment,
   likeDislike: itinerariesActions.likeDislike,
-  activities: activitiesActions.activities,
 };
 
 const mapStateToProps = (state) => {
@@ -134,7 +128,6 @@ const mapStateToProps = (state) => {
     city: state.Data.city,
     itineraries: state.itinerariesReducers.itineraries,
     user: state.userReducer.user,
-    activities: state.activitiesReducers.activities,
   };
 };
 

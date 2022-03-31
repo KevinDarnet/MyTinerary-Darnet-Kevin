@@ -1,5 +1,4 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import citiesActions from "../Redux/actions/citiesActions";
 import itinerariesActions from "../Redux/actions/itinerariesActions";
@@ -33,26 +32,18 @@ const Comment = (props) => {
   return (
     <>
       {props.user ? (
-        <div className="card cardComments">
-          <div className="card-header cardHeaderNew">
-            LEAVE US YOUR COMMENT!
-          </div>
-          <div className="card-body ">
+        <div className="card3 ">
+          <div>LEAVE US YOUR COMMENT!</div>
+          <div>
             <div>
               <input
                 id="nuevoComentario"
                 placeholder="Ingresa aqui tu comentario..."
-                className="card-text textComments border border-dark mb-3"
                 value={inputText}
                 onChange={(event) => setInputText(event.target.value)}
               />
             </div>
-            <button
-              onClick={cargarComentario}
-              className="btn btn-primary btnComments"
-            >
-              Cargar
-            </button>
+            <button onClick={cargarComentario}>Cargar</button>
           </div>
         </div>
       ) : (
@@ -64,12 +55,12 @@ const Comment = (props) => {
 
 const mapDispatchToProps = {
   findOneCity: citiesActions.findOneCity,
-  itinerarioPorCiudad: itinerariesActions.itinerarioPorCiudad,
+  getOneItinerary: itinerariesActions.getOneItinerary,
+  itinerariesPerCity: itinerariesActions.itinerariesPerCity,
   addComment: commentsActions.addComment,
   modifiComment: commentsActions.modifiComment,
   deleteComment: commentsActions.deleteComment,
   likeDislike: itinerariesActions.likeDislike,
-  activities: activitiesActions.activities,
 };
 
 const mapStateToProps = (state) => {
@@ -77,7 +68,6 @@ const mapStateToProps = (state) => {
     city: state.Data.city,
     itineraries: state.itinerariesReducers.itineraries,
     user: state.userReducer.user,
-    activities: state.activitiesReducers.activities,
   };
 };
 

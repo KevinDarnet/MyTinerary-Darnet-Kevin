@@ -7,18 +7,17 @@ const itinerariesActions = {
       const res = await axios.get(
         "http://localhost:4000/api/cityItineraries?cityId=" + id
       );
-      //console.log(res);
+      console.log(res);
       dispatch({ type: ITINERARIES_GET, payload: res.data.response });
     };
   },
 
-  likeDislike: (itineraryId) => {
+  likeDislike: (id) => {
+    const token = localStorage.getItem("token");
     return async () => {
       try {
-        const token = localStorage.getItem("token");
-
         let response = await axios.put(
-          `http://localhost:4000/api/like/${itineraryId}`,
+          `http://localhost:4000/api/like/:id${id}`,
           {},
 
           {
@@ -27,7 +26,8 @@ const itinerariesActions = {
             },
           }
         );
-        console.log(response);
+/*         console.log(response);
+ */
         return {
           success: true,
           response: response,

@@ -1,15 +1,13 @@
-const Router = require("express").Router();
-
 const itinerariesRouter = require(`express`).Router();
 const passport = require("../config/passport");
-
 const itinerariesControllers = require(`../controllers/itineraryControllers`);
 const commentsControllers = require("../controllers/commentsControllers");
-const { addComment, modifiComment, deleteComment } = commentsControllers;
+const { addComment, modifyComment, deleteComment } = commentsControllers;
+
 const {
-  cargarItinerary,
+  getItinerary,
   cargarCiudadItinerary,
-  cargarUnItinerary,
+  getOneItinerary,
   subirItinerary,
   borrarItinerary,
   modificarItinerary,
@@ -17,27 +15,25 @@ const {
   prueba,
 } = itinerariesControllers;
 
-itinerariesRouter
-  .route(`/itineraries`)
-  .get(cargarItinerary)
-  .post(cargarUnItinerary);
+itinerariesRouter.route(`/itineraries/:id`).get(getOneItinerary);
+itinerariesRouter.route(`/itineraries`).get(getItinerary);
 
-itinerariesRouter
-  .route(`/itineraryId/:id`)
-  .delete(borrarItinerary)
-  .put(modificarItinerary)
-  .get(subirItinerary);
 //LIKES ROUTES
 itinerariesRouter
   .route("/like/:id")
   .put(passport.authenticate("jwt", { session: false }), likeDislike)
   .get(prueba);
+itinerariesRouter
+  .route(`/itineraryId/:id`)
+  .delete(borrarItinerary)
+  .put(modificarItinerary)
+  .get(subirItinerary);
 
 //Itineraries Comments ROUTES
 itinerariesRouter
   .route("/itinerary/comment")
   .post(passport.authenticate("jwt", { session: false }), addComment)
-  .put(passport.authenticate("jwt", { session: false }), modifiComment);
+  .put(passport.authenticate("jwt", { session: false }), modifyComment);
 
 itinerariesRouter
   .route("/itinerary/comment/:id")

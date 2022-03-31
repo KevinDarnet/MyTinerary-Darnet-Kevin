@@ -45,7 +45,7 @@ const usersControllers = {
   verifyEmail: async (req, res) => {
     const { uniqueString } = req.params; //EXTRAE EL EL STRING UNICO DEL LINK
     const user = await User.findOne({ uniqueString: uniqueString });
-    console.log(user); //BUSCA AL USUARIO CORRESPONDIENTE AL LINK
+    /* console.log(user); */ //BUSCA AL USUARIO CORRESPONDIENTE AL LINK
     if (user) {
       user.emailVerificado = true; //COLOCA EL CAMPO emailVerified en true
       await user.save();
@@ -63,9 +63,9 @@ const usersControllers = {
       const usuarioExiste = await User.findOne({ email }); //BUSCAR SI EL USUARIO YA EXISTE EN DB
       if (usuarioExiste) {
         if (usuarioExiste.from.indexOf(from) !== -1) {
-          console.log(
+          /*  console.log(
             "resultado de if " + (usuarioExiste.from.indexOf(from) === 0)
-          ); //INDEXOF = 0 EL VALOR EXISTE EN EL INDICE EQ A TRUE -1 NO EXITE EQ A FALSE
+          ); */ //INDEXOF = 0 EL VALOR EXISTE EN EL INDICE EQ A TRUE -1 NO EXITE EQ A FALSE
           res.json({
             success: false,
             from: "signup",
@@ -100,8 +100,8 @@ const usersControllers = {
         //SI EL USUARIO NO ESXITE
 
         const contraseñaHasheada = bcryptjs.hashSync(password, 10); //LO CREA Y ENCRIPTA LA CONTRASEÑA
-        console.log(contraseñaHasheada);
-        // CREA UN NUEVO OBJETO DE PERSONAS CON SU USUARIO Y CONTRASEÑA (YA ENCRIPTADA)
+        /*         console.log(contraseñaHasheada);
+         */ // CREA UN NUEVO OBJETO DE PERSONAS CON SU USUARIO Y CONTRASEÑA (YA ENCRIPTADA)
         const nuevoUsuario = await new User({
           fullName,
           email,
@@ -145,11 +145,11 @@ const usersControllers = {
   },
   signInUser: async (req, res) => {
     const { email, password, from } = req.body.loggedUser;
-    console.log(req.body.loggedUser);
-    try {
+    /*     console.log(req.body.loggedUser);
+     */ try {
       const usuarioExiste = await User.findOne({ email });
-      console.log(from);
-      console.log(usuarioExiste.from.indexOf(from));
+      /*  console.log(from);
+      console.log(usuarioExiste.from.indexOf(from)); */
 
       if (!usuarioExiste) {
         // PRIMERO VERIFICA QUE EL USUARIO EXISTA
@@ -195,8 +195,8 @@ const usersControllers = {
           }
         } else {
           if (usuarioExiste.emailVerificado) {
-            console.log(usuarioExiste.from.indexOf(from));
-
+            /*             console.log(usuarioExiste.from.indexOf(from));
+             */
             let contraseñaCoincide = usuarioExiste.password.filter((pass) =>
               bcryptjs.compareSync(password, pass)
             );
@@ -250,8 +250,8 @@ const usersControllers = {
     res.json(console.log("sesion cerrada " + email));
   },
   verificarToken: (req, res) => {
-    console.log(req.user);
-    if (!req.err) {
+    /*     console.log(req.user);
+     */ if (!req.err) {
       res.json({
         success: true,
         response: {

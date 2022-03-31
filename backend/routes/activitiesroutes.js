@@ -1,22 +1,27 @@
-const Router = require(`express`).Router();
+const activitiesRouter = require(`express`).Router();
 
-const activitiesControllers = require(`../controllers/activitiesControllers`);
+const activitiesControllers = require(`../controllers/activitiescontrollers`);
 
 const {
-  getActivities,
-  getActivityPerItinerary,
+  getAllActivities,
+  getOneActivity,
+  uploadActivity,
   deleteActivity,
-  upActivities,
   modifyActivity,
+  getItineraryActivities,
 } = activitiesControllers;
 
-Router.route(`/activities`).get(getActivities);
+activitiesRouter
+  .route(`/activities`)
+  .get(getAllActivities)
+  .post(uploadActivity);
 
-Router.route(`/activities/:id`)
+activitiesRouter
+  .route(`/activities/:id`)
   .delete(deleteActivity)
   .put(modifyActivity)
-  .get(upActivities);
+  .get(getOneActivity);
 
-Router.route(`/itineraryActivity/:id`).get(getActivityPerItinerary);
+activitiesRouter.route(`/itineraryActivities/:id`).get(getItineraryActivities);
 
-module.exports = Router;
+module.exports = activitiesRouter;

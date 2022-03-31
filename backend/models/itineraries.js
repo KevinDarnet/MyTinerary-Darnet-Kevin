@@ -4,6 +4,7 @@ const itinerariesSchema = new mongoose.Schema({
   image: { type: String, required: true },
   name: { type: String, required: true },
   username: { type: String, required: true },
+  userimage: { type: String, required: true },
   details: { type: String, required: true },
   price: { type: Number, required: true },
   duration: { type: String, required: true },
@@ -15,7 +16,7 @@ const itinerariesSchema = new mongoose.Schema({
       userID: { type: mongoose.Types.ObjectId, ref: "users" },
     },
   ],
-  cityId: { type: mongoose.Types.ObjectId, ref: "ciudades" },
+  cityId: { type: mongoose.Types.ObjectId, ref: "itinerarios" },
 });
 const itineraries = mongoose.model("itinerarios", itinerariesSchema);
 module.exports = itineraries;

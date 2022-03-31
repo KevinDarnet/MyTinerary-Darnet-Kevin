@@ -6,8 +6,8 @@ const userActions = {
       const res = await axios.post("http://localhost:4000/api/auth/signup", {
         userData,
       });
-      console.log(res.data);
-      dispatch({
+/*       console.log(res.data);
+ */      dispatch({
         type: "message",
         payload: {
           view: true,
@@ -18,16 +18,16 @@ const userActions = {
     };
   },
   signInUser: (loggedUser) => {
-    console.log(loggedUser);
-    return async (dispatch, getState) => {
+/*     console.log(loggedUser);
+ */    return async (dispatch, getState) => {
       const user = await axios.post("http://localhost:4000/api/auth/login", {
         loggedUser,
       });
-      console.log(user);
-      if (user.data.success) {
+/*       console.log(user);
+ */      if (user.data.success) {
         localStorage.setItem("token", user.data.response.token);
-        console.log(user.data.success);
-        dispatch({ type: "user", payload: user.data.response.userData });
+/*         console.log(user.data.success);
+ */        dispatch({ type: "user", payload: user.data.response.userData });
       }
       dispatch({
         type: "message",
@@ -50,8 +50,8 @@ const userActions = {
   },
   verificarToken: (token) => {
     return async (dispatch, getState) => {
-      console.log(token);
-      const user = await axios.get(
+/*       console.log(token);
+ */      const user = await axios.get(
         "http://localhost:4000/api/auth/signInToken",
         {
           headers: {
@@ -59,8 +59,8 @@ const userActions = {
           },
         }
       );
-      console.log(user);
-
+/*       console.log(user);
+ */
       if (user.data.success) {
         dispatch({ type: "user", payload: user.data.response });
         dispatch({

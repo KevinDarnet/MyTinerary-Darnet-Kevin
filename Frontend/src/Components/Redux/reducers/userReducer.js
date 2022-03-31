@@ -3,8 +3,8 @@ const initialState = {
   snackbar: { view: false, message: "", success: false },
 };
 const userReducer = (state = initialState, action) => {
-  console.log(initialState);
-
+/*   console.log(initialState);
+ */
   switch (action.type) {
     case "user":
       return {

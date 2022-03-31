@@ -4,8 +4,8 @@ const initialState = {
 };
 
 const activitiesReducer = (state = initialState, action) => {
-  console.log(action);
-  switch (action.type) {
+/*   console.log(action);
+ */  switch (action.type) {
     case "fetchActivities":
       return {
         ...state,

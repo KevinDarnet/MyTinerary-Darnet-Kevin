@@ -1,9 +1,9 @@
 const Itinerarios = require("../models/itineraries");
 
 const itineraryController = {
-  cargarItinerary: async (req, res) => {
+  getItinerary: async (req, res) => {
     //console.log(req);
-    const data = await Itinerarios.find().populate("cityId");
+    const data = await Itinerarios.find()
     res.json({
       response: data,
     });
@@ -12,33 +12,23 @@ const itineraryController = {
     try {
       const itineraryPerCity = await Itinerarios.find({
         cityId: req.query.cityId,
-      });
+      })
       res.json({ response: itineraryPerCity });
     } catch (error) {
       console.log(error);
     }
   },
-  cargarUnItinerary: async (req, res) => {
+  getOneItinerary: async (req, res) => {
     const id = req.params.id;
-    const data = await Itinerarios.findOne({ _id: id });
+    const data = await Itinerarios.findOne({ _id: id })/* .populate("activities") */
     res.json({ response: data });
   },
   subirItinerary: (req, res) => {
-    const { image, name, username, details, price, hashtag, duration, cityId } =
-      req.body;
-    new Itinerarios({
-      image,
-      name,
-      username,
-      details,
-      price,
-      hashtag,
-      duration,
-      cityId,
-    })
-      .save()
-      .then((respuesta) => res.json({ respuesta }));
-  },
+
+    const { image,name,username,userimage, details, price, duration, hashtag, likes,  comments, cityId} = req.body;
+
+    new Itinerarios({image,name,username,userimage,details,price,duration,hashtag,likes,comments,cityId}).save().then((respuesta) => res.json({ respuesta }));},
+    
   borrarItinerary: async (req, res) => {
     const id = req.params.id;
     await Itinerarios.findOneAndDelete({ _id: id }).then((respuesta) =>
@@ -54,18 +44,16 @@ const itineraryController = {
     );
   },
   likeDislike: async (req, res) => {
-    const id = req.params.id; //LLEGA POR PARAMETRO DESDE AXIOS
+    const id = req.params.id; //LLEGA POR AXIOS
     console.log(req.params.id);
-
     console.log(req.user);
-    const user = req.user.id; //LLEGA POR RESPUESTA DE PASSPORT
-    console.log(user);
-
-    try {
+    const user = req.user.id; //LLEGA POR PASSPORT
+    /*     console.log(user);
+     */ try {
       await Itinerarios.findOne({ _id: req.params.id })
         .then((itinerary) => {
-          console.log(itinerary);
-          if (itinerary.likes.includes(user)) {
+          /*           console.log(itinerary);
+           */ if (itinerary.likes.includes(user)) {
             Itinerarios.findOneAndUpdate(
               { _id: req.params.id },
               { $pull: { likes: user } },
@@ -93,7 +81,7 @@ const itineraryController = {
     }
   },
   prueba: async (req, res) => {
-    const data = await Itinerarios.find().populate("cityId");
+    const data = await Itinerarios.find()/* .populate("cityId"); */
     res.json({
       response: data,
     });
