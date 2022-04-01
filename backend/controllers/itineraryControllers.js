@@ -3,7 +3,7 @@ const Itinerarios = require("../models/itineraries");
 const itineraryController = {
   getItinerary: async (req, res) => {
     //console.log(req);
-    const data = await Itinerarios.find()
+    const data = await Itinerarios.find();
     res.json({
       response: data,
     });
@@ -12,7 +12,7 @@ const itineraryController = {
     try {
       const itineraryPerCity = await Itinerarios.find({
         cityId: req.query.cityId,
-      })
+      }).populate("activities");
       res.json({ response: itineraryPerCity });
     } catch (error) {
       console.log(error);
@@ -20,15 +20,41 @@ const itineraryController = {
   },
   getOneItinerary: async (req, res) => {
     const id = req.params.id;
-    const data = await Itinerarios.findOne({ _id: id })/* .populate("activities") */
+    const data = await Itinerarios.findOne({ itineraryId: id });
     res.json({ response: data });
   },
   subirItinerary: (req, res) => {
+    const {
+      image,
+      name,
+      username,
+      userimage,
+      details,
+      price,
+      duration,
+      hashtag,
+      likes,
+      comments,
+      cityId,
+    } = req.body;
 
-    const { image,name,username,userimage, details, price, duration, hashtag, likes,  comments, cityId} = req.body;
+    new Itinerarios({
+      image,
+      name,
+      username,
+      userimage,
+      details,
+      price,
+      duration,
+      hashtag,
+      likes,
+      comments,
+      cityId,
+    })
+      .save()
+      .then((respuesta) => res.json({ respuesta }));
+  },
 
-    new Itinerarios({image,name,username,userimage,details,price,duration,hashtag,likes,comments,cityId}).save().then((respuesta) => res.json({ respuesta }));},
-    
   borrarItinerary: async (req, res) => {
     const id = req.params.id;
     await Itinerarios.findOneAndDelete({ _id: id }).then((respuesta) =>
@@ -48,7 +74,7 @@ const itineraryController = {
     console.log(req.params.id);
     console.log(req.user);
     const user = req.user.id; //LLEGA POR PASSPORT
-      try {
+    try {
       await Itinerarios.findOne({ _id: req.params.id })
         .then((itinerary) => {
           /*           console.log(itinerary);
@@ -80,7 +106,7 @@ const itineraryController = {
     }
   },
   prueba: async (req, res) => {
-    const data = await Itinerarios.find()/* .populate("cityId"); */
+    const data = await Itinerarios.find(); /* .populate("cityId"); */
     res.json({
       response: data,
     });

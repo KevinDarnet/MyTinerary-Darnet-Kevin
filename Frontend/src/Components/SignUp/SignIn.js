@@ -57,7 +57,7 @@ function SignIn(props) {
           />
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-primary btn-block btnform">
+          <button type="submit" className="btn btn-block btnform">
             SignIn
           </button>
         </div>

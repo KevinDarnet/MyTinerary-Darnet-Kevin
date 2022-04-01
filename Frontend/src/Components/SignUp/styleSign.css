@@ -30,7 +30,6 @@ form {
   color: white;
 }
 .selectcountry {
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -61,7 +60,15 @@ form {
   margin: 1rem;
   border-radius: 0.4rem;
   background-color: rgb(15, 90, 34);
-  text-decoration: none;
+  text-decoration: none !important;
+}
+.btnform:hover {
+  color: rgb(250, 250, 250);
+  padding: 0.5rem;
+  margin: 1rem;
+  border-radius: 0.4rem;
+  background-color: rgb(16, 59, 26);
+  text-decoration: none !important;
 }
 
 .btnformout {
@@ -71,6 +78,8 @@ form {
   border-radius: 0.4rem;
   background-color: rgb(128, 25, 0);
   text-decoration: none;
+}
+.btn {
 }
 .input-group {
   display: flex;

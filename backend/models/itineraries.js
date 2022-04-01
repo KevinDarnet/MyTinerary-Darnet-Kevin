@@ -10,6 +10,7 @@ const itinerariesSchema = new mongoose.Schema({
   duration: { type: String, required: true },
   hashtag: [{ type: String, required: true }],
   likes: { type: Array },
+  activities: [{ type: mongoose.Types.ObjectId, ref: "activities" }],
   comments: [
     {
       comment: { type: String },

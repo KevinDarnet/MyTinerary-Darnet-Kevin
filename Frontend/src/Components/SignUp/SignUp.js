@@ -146,11 +146,12 @@ function SignUp(props) {
         </form>
       ) : (
         <div className="selectcountry">
-          <h2 className="title mt-3 text-center textselect">
-            Select your country to register
-          </h2>
-          <img className="imgformcountry" src={countryImg} />
           <div>
+            <h2 className="title mt-3 text-center textselect">
+              Select your country to register
+            </h2>
+          </div>
+          <div className="titleSignIn">
             <h3>You have an account?</h3>
             <LinkRouter className="btnform" to="/login">
               SignIn

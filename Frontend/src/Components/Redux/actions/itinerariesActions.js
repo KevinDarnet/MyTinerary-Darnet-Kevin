@@ -11,7 +11,15 @@ const itinerariesActions = {
       dispatch({ type: ITINERARIES_GET, payload: res.data.response });
     };
   },
-
+  getOneItinerary: (id) => {
+    return async (dispatch, getState) => {
+      const res = await axios.get(
+        `http://localhost:4000/api/itineraries/${id}`
+      );
+      console.log(res);
+      dispatch({ type: "oneItineraryAndActivities", payload: res });
+    };
+  },
   likeDislike: (id) => {
     const token = localStorage.getItem("token");
     return async () => {
@@ -26,8 +34,6 @@ const itinerariesActions = {
             },
           }
         );
-/*         console.log(response);
- */
         return {
           success: true,
           response: response,

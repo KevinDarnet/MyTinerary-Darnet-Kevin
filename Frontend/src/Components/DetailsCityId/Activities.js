@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import activitiesActions from "../Redux/actions/activitiesActions";
@@ -6,25 +7,28 @@ import activitiesActions from "../Redux/actions/activitiesActions";
 function Activities(props) {
   console.log(props);
 
+  const [activities, setActivities] = useState([]);
   useEffect(() => {
-    props.findOneActivityPerItinerary(props.id);
-  }, []);
+    props
+      .findOneActivityPerItinerary(props.id)
+      .then((res) => setActivities(res.response));
+  }, [props.id]);
+  console.log(activities);
+
   return (
     <>
-      {props.oneActivityPerItinerary ? (
-        props.oneActivityPerItinerary.map((activity) => (
-          <div>
-            <h2 className="activity">{activity.name} </h2>
-            <div className="divActivities">
+      {activities?.map((activity) => {
+        return (
+          <div className="conteinerActivities">
+            <div className="divTitleActivity">
+              <h3 className="titleActivity">{activity.name}</h3>
+            </div>
+            <div className="divImgActivity">
               <img className="imgActivities" src={activity.image} />
             </div>
           </div>
-        ))
-      ) : (
-        <div>
-          <h2 className="activity">nada </h2>
-        </div>
-      )} 
+        );
+      })}
     </>
   );
 }

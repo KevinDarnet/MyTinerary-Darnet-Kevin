@@ -3,17 +3,16 @@ const Activity = require("../models/activities");
 const activityController = {
   getAllActivities: async (req, res) => {
     /*     console.log(req);
-     */ const data = await Activity.find()
+     */ const data = await Activity.find();
     res.json({
       response: data,
-    })
+    });
   },
-
   getItineraryActivities: async (req, res) => {
     try {
       const activityPerItinerary = await Activity.find({
         itineraryId: req.params.id,
-      })
+      });
       res.json({
         success: true,
         response: activityPerItinerary,
@@ -23,15 +22,11 @@ const activityController = {
     }
   },
   getOneActivity: async (req, res) => {
-    console.log("req.params.id req.params.id req.params.id req.params.id");
-    console.log(req.params.id).populate("activities")
     const id = req.params.id;
     const data = await Activity.findOne({
-      _id: id,
-    })
+      itineraryId: id,
+    });
     res.json({ response: data });
-    console.log("data data data data data");
-    console.log(data);
   },
   uploadActivity: (req, res) => {
     const { image, name, description, itineraryId } = req.body;
@@ -39,7 +34,7 @@ const activityController = {
       image,
       name,
       description,
-      itineraryId
+      itineraryId,
     })
       .save()
       .then((respuesta) => res.json({ respuesta }));

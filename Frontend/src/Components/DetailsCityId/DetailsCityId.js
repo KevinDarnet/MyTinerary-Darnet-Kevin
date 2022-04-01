@@ -11,13 +11,13 @@ import "../Styles/itineraryDetails.css";
 import Activities from "./Activities";
 
 const DetailsCityId = (props) => {
-  
+  console.log(props);
   const [reload, setReload] = useState();
   const { city } = props;
   const { id } = useParams();
 
   async function likesOrDislikes(id) {
-    console.log(id)
+    console.log(id);
     await props.likeDislike(id);
     setReload(!reload);
   }
@@ -41,19 +41,12 @@ const DetailsCityId = (props) => {
         {city._id && (
           <div className="carddetails">
             <div className="tituloItinerario">
-              <div className="descriptionitinerarytitulo">
-                <h1 className="titulocard">{city.city} </h1>
-              </div>
-              <img className="imgdetails" src={city.image} />
+              <h1 className="card-title">{city.city} </h1>
             </div>
-            {/* PRINT ITINERARIES */}
             <div className="d-flex flex-column">
               {props.itineraries.length ? (
                 props.itineraries.map((itinerary, index) => (
-                
                   <div className="card2 mb-3 cardDetail2">
-                    
-                   
                     <div className="ConteinerUser">
                       <img className="imguser" src={itinerary?.userimage} />
                       <h2 className="card-user">{itinerary?.username}</h2>
@@ -67,7 +60,10 @@ const DetailsCityId = (props) => {
                         Description: {itinerary?.details}{" "}
                       </p>
                       <p className="card-p2">Duration: {itinerary?.duration}</p>
-                      <p className="card-p2">Hashtag: {itinerary?.hashtag}</p>
+                      <p className="card-p2">
+                        Hashtag:{" "}
+                        {itinerary?.hashtag[0] + " " + itinerary?.hashtag[1]}
+                      </p>
                       <p className="card-p2">
                         Price:{"💵".repeat(parseInt(itinerary.price))}
                       </p>
@@ -76,18 +72,22 @@ const DetailsCityId = (props) => {
                           <button
                             className="buttonLike"
                             id={itinerary?._id}
-                            onClick={()=>likesOrDislikes(itinerary._id)}
+                            onClick={() => likesOrDislikes(itinerary._id)}
                           >
                             {itinerary?.likes.includes(props.user.id) ? (
                               <button
-                                style={{ color: "red", fontSize: 30 }}
+                                style={{
+                                  color: "red",
+                                  fontSize: 30,
+                                  textAlign: "center",
+                                }}
                                 className="material-icons"
                               >
                                 favorite
                               </button>
                             ) : (
                               <span
-                                style={{ fontSize: 30 }}
+                                style={{ fontSize: 30, color: "white" }}
                                 className="material-icons"
                               >
                                 favorite_border
@@ -97,13 +97,23 @@ const DetailsCityId = (props) => {
                         ) : (
                           <span
                             onClick={noUser}
-                            style={{ fontSize: 30 }}
+                            style={{
+                              fontSize: 30,
+                              color: "white",
+                            }}
                             className="material-icons"
                           >
                             favorite_border
                           </span>
                         )}
-                        <h3 style={{ color: "black ", fontSize: 30 }}>
+                        <h3
+                          style={{
+                            color: "white",
+                            fontSize: 30,
+                            marginLeft: "0.5rem",
+                            textAlign: "center",
+                          }}
+                        >
                           {itinerary?.likes.length}
                         </h3>
                       </div>
@@ -164,11 +174,8 @@ const DetailsCityId = (props) => {
                           data-bs-parent={"#" + itinerary?.name}
                         >
                           <div className="activitiesDetail accordion-body">
-                      
-                          <Activities id={itinerary._id} />
-
+                            <Activities id={itinerary._id} />
                           </div>
-                 
                         </div>
                       </div>
                     </div>
