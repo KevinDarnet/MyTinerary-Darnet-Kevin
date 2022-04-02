@@ -2,19 +2,22 @@ const Itineraries = require("../models/itineraries");
 
 const commentsControllers = {
   addComment: async (req, res) => {
+    const { itineraryID, comments } = req.body.comentario;
+    console.log(itineraryID, comments);
+    const userID = req.user._id;
     try {
       const nuevoComment = await Itineraries.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: itineraryID },
         {
           $push: {
-            comments: { comment: req.body.comment, userID: req.user._id },
+            comments: { comment: comments, userID: userID },
           },
         },
         { new: true }
-      ).populate("comments.userID", "name");
+      ).populate("comments.userID", { fullName: 1 });
       res.json({
         success: true,
-        response: nuevoComment,
+        response: { nuevoComment },
         message: "gracias por dejarnos tu comentario",
       });
     } catch (error) {
@@ -33,21 +36,23 @@ const commentsControllers = {
         { "comments._id": req.params.id },
         { $set: { "comments.$.comment": comment } },
         { new: true }
-      );
-      if (modifyComment) {
-        res.json({ success: true, response: modifyComment });
-      } else {
-        res.json({ error: "el comentario no se ha encontrado" });
-      }
+      ).populate("comments.userID", { fullname: 1, picture: 1 });
+      modifyComment.save();
+      res.json({
+        success: true,
+        response: { modifyComment },
+        message: "tu commentario se ha modificado",
+      });
     } catch (error) {
       res.json({ success: false, response: error.message });
     }
   },
 
   deleteComment: async (req, res) => {
+    const id = req.params.id;
     try {
       const deleteComment = await Itineraries.findOneAndUpdate(
-        { _id: req.params.id },
+        { "comments._id": id },
         {
           $pull: {
             comments: {
@@ -56,12 +61,13 @@ const commentsControllers = {
           },
         },
         { new: true }
-      );
-      /*       console.log(deleteComment);
-       */ res.json({
+      ).populate("comments.userID", { fullname: 1, picture: 1 });
+      console.log(deleteComment);
+      deleteComment.save();
+      res.json({
         success: true,
-        response: deleteComment,
-        message: "has eliminado el comentario",
+        response: { deleteComment },
+        message: "Has eliminado el comentario",
       });
     } catch (error) {
       console.log(error);

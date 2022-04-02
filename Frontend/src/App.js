@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import userActions from "./Components/Redux/actions/userActions";
 import Snackbar from "./Components/SignUp/Snackbar";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function App(props) {
   useEffect(() => {
@@ -22,8 +24,8 @@ function App(props) {
   function SignOut() {
     props.SignOutUser(props.user.email);
   }
-  console.log(SignOut);
-  return (
+  /*   console.log(SignOut);
+   */ return (
     <BrowserRouter>
       <ScrollToTop />
       <NavBar />

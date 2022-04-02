@@ -9,16 +9,19 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import "../Styles/itineraryDetails.css";
 import Activities from "./Activities";
+import Comments from "../Comments/comments";
+import comentarioActions from "../Redux/actions/comentarioActions";
 
 const DetailsCityId = (props) => {
-  console.log(props);
+  /*   console.log(props);
+   */ console.log(props.itineraries);
   const [reload, setReload] = useState();
   const { city } = props;
   const { id } = useParams();
 
   async function likesOrDislikes(id) {
-    console.log(id);
-    await props.likeDislike(id);
+    /*     console.log(id);
+     */ await props.likeDislike(id);
     setReload(!reload);
   }
 
@@ -175,6 +178,12 @@ const DetailsCityId = (props) => {
                         >
                           <div className="activitiesDetail accordion-body">
                             <Activities id={itinerary._id} />
+
+                            <Comments
+                              user={props.user}
+                              itineraryID={itinerary._id}
+                              comments={itinerary.comments}
+                            />
                           </div>
                         </div>
                       </div>

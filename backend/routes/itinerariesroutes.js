@@ -31,13 +31,17 @@ itinerariesRouter
 
 //Itineraries Comments ROUTES
 itinerariesRouter
-  .route("/itinerary/comment")
-  .post(passport.authenticate("jwt", { session: false }), addComment)
-  .put(passport.authenticate("jwt", { session: false }), modifyComment);
+  .route("/itineraries/comment")
+  .post(passport.authenticate("jwt", { session: false }), addComment);
 
 itinerariesRouter
-  .route("/itinerary/comment/:id")
+  .route("/itineraries/comment/:id")
   .post(passport.authenticate("jwt", { session: false }), deleteComment);
+
+itinerariesRouter
+  .route("/itineraries/comment/modify")
+  .put(passport.authenticate("jwt", { session: false }), modifyComment);
+
 itinerariesRouter.route(`/cityItineraries`).get(cargarCiudadItinerary);
 
 module.exports = itinerariesRouter;

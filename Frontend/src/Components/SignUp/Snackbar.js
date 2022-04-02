@@ -39,8 +39,8 @@ function Snack(props) {
       },
     });
   };
-  console.log(props);
-
+  /*   console.log(props);
+   */
   return (
     <div>
       {props.snackbar.view === true && (

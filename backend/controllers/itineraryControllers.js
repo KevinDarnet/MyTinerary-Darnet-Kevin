@@ -12,7 +12,9 @@ const itineraryController = {
     try {
       const itineraryPerCity = await Itinerarios.find({
         cityId: req.query.cityId,
-      }).populate("activities");
+      })
+        .populate("activities")
+        .populate("comments.userID", { fullName: 1, picture: 1 });
       res.json({ response: itineraryPerCity });
     } catch (error) {
       console.log(error);

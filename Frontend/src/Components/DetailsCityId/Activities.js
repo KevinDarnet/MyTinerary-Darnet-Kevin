@@ -5,15 +5,13 @@ import { connect } from "react-redux";
 import activitiesActions from "../Redux/actions/activitiesActions";
 
 function Activities(props) {
-  console.log(props);
-
   const [activities, setActivities] = useState([]);
+
   useEffect(() => {
     props
       .findOneActivityPerItinerary(props.id)
       .then((res) => setActivities(res.response));
   }, [props.id]);
-  console.log(activities);
 
   return (
     <>

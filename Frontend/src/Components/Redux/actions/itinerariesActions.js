@@ -7,8 +7,8 @@ const itinerariesActions = {
       const res = await axios.get(
         "http://localhost:4000/api/cityItineraries?cityId=" + id
       );
-      console.log(res);
-      dispatch({ type: ITINERARIES_GET, payload: res.data.response });
+      /*       console.log(res);
+       */ dispatch({ type: ITINERARIES_GET, payload: res.data.response });
     };
   },
   getOneItinerary: (id) => {
@@ -16,8 +16,8 @@ const itinerariesActions = {
       const res = await axios.get(
         `http://localhost:4000/api/itineraries/${id}`
       );
-      console.log(res);
-      dispatch({ type: "oneItineraryAndActivities", payload: res });
+      /*       console.log(res);
+       */ dispatch({ type: "oneItineraryAndActivities", payload: res });
     };
   },
   likeDislike: (id) => {

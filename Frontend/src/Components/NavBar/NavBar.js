@@ -39,8 +39,8 @@ function ResponsiveAppBar(props) {
   function SignOut() {
     props.SignOutUser(props.user.email);
   }
-  console.log(props);
-  return (
+  /*   console.log(props);
+   */ return (
     <>
       <AppBar className="Navcolor" position="static">
         <Container maxWidth="xl">
