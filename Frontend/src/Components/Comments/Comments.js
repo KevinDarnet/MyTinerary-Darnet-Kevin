@@ -61,6 +61,7 @@ const Comentarios = (props) => {
                 <div className="ConteinerUsercomment">
                   <img className="imguser" src={comment?.userID?.picture} />
                   <h2 className="textName">{comment?.userID?.fullName}</h2>
+
                   <input
                     type="textName"
                     className="card-text textComments"
