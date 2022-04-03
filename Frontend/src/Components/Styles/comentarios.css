@@ -4,10 +4,7 @@
   padding: 1rem;
 }
 .text {
-  text-align: center;
   display: flex;
-  align-content: center;
-  text-align: center;
   font-size: 1rem !important;
   font-family: "Montserrat", sans-serif;
   margin-left: 1rem;
@@ -27,7 +24,7 @@
   padding: 0.2rem;
   font-weight: bold;
 }
-.imguser {
+.imguser2 {
   padding: 0.3rem;
   width: 4rem;
   height: 100%;
@@ -61,12 +58,12 @@
 .ConteinerUsercomment {
   padding: 1rem;
   border: 3px black solid;
-  border-radius: 1rem 1rem 1rem 1rem;
 }
 .comentarios {
   background-color: black;
 }
 .cardComments {
+  margin-top: 2rem;
   background-color: black;
   border-radius: 1rem 1rem 1rem 1rem;
 }
@@ -88,6 +85,16 @@
   text-align: center;
   font-weight: bold;
 }
-.cardComments {
-  background-color: black;
+.cardmodificable {
+  width: 100%;
+}
+.textComments {
+  margin-bottom: 1rem;
+}
+.btn {
+  border-radius: 1rem;
+  margin-left: 0.7rem;
+}
+.card-text {
+  border-radius: 1rem;
 }

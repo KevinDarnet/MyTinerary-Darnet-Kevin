@@ -15,9 +15,10 @@ const Comentarios = (props) => {
   const usuario = props.user;
   const cambio = useSelector((state) => state.comentarioReducer.cambio);
   console.log(cambio);
-
-  const [inputText, setInputText] = useState();
   const [modificar, setModificar] = useState();
+  const [modify, setModify] = useState(true);
+  const [textAreaModify, setTextAreaModify] = useState(true);
+  const [inputText, setInputText] = useState();
 
   async function cargarUnComentario(event) {
     const comentarioUsuario = {
@@ -30,19 +31,31 @@ const Comentarios = (props) => {
       setInputText("")
     );
   }
+  function textAreaModifcar() {
+    setTextAreaModify(!textAreaModify);
+  }
+  function onKeyPress(event) {
+    if (event.key === "Enter") {
+      modificarComentario(event);
+      setTextAreaModify(!textAreaModify);
+    }
+  }
 
   async function modificarComentario(event) {
     const comentarioUsuario = {
       _id: event.target.id,
       comments: modificar,
     };
-    //console.log(comentarioUsuario)
     await dispatch(actualizarComentario(comentarioUsuario, cambio)).then(
       (res) => console.log(res)
     );
+    setTextAreaModify(!textAreaModify);
   }
   async function matarComentario(event) {
     dispatch(eliminarComentario(event.target.id, cambio)).then((res) => res);
+  }
+  function modifyComent() {
+    setModify(!modify);
   }
 
   return (
@@ -51,47 +64,59 @@ const Comentarios = (props) => {
         props?.comments?.map((comment, index) => {
           if (comment?.userID?._id !== usuario?.id) {
             return (
-              <div className="Comment" key={index}>
-                <p className="text">{comment?.comment}</p>
+              <div className="card3 cardComments" key={index}>
+                <div className="ConteinerUsercomment" key={index}>
+                  <img className="imguser2" src={comment?.userID?.picture} />
+                  <h2 className="textName">{comment?.userID?.fullName}</h2>
+                  <p className="text">{comment?.comment}</p>
+                </div>
               </div>
             );
           } else {
             return (
               <div className="card3 cardComments" key={index}>
                 <div className="ConteinerUsercomment">
-                  <img className="imguser" src={comment?.userID?.picture} />
+                  <img className="imguser2" src={comment?.userID?.picture} />
                   <h2 className="textName">{comment?.userID?.fullName}</h2>
+                  <p className="text">{comment.comment}</p>
 
-                  <input
-                    type="textName"
-                    className="card-text textComments"
-                    onChange={(event) => setModificar(event.target.value)}
-                    value={comment.comment}
-                  />
-
-                  <button
-                    className="btn btn-primary"
-                    id={comment._id}
-                    onClick={modificarComentario}
-                  >
-                    Modify
-                  </button>
-                  <button
-                    className="btn btn-primary"
-                    id={comment._id}
-                    onClick={matarComentario}
-                  >
-                    Delete
-                  </button>
+                  {!modify ? (
+                    <>
+                      <button
+                        className="btn btn-primary"
+                        id={comment._id}
+                        onClick={textAreaModifcar}
+                      >
+                        Modify
+                      </button>
+                      <button
+                        className="btn btn-primary"
+                        id={comment._id}
+                        onClick={matarComentario}
+                      >
+                        Delete
+                      </button>
+                    </>
+                  ) : (
+                    <button className="textName" onClick={modifyComent}>
+                      ...
+                    </button>
+                  )}
                 </div>
-                <div className="card-body ">
-                  <textarea
-                    type="text"
-                    className="card-text textComments"
-                    onChange={(event) => setModificar(event.target.value)}
-                    defaultValue={comment.comment}
-                  />
-                </div>
+                {!textAreaModify ? (
+                  <div className="ConteinerUsercomment">
+                    <input
+                      className="cardmodificable"
+                      type="text"
+                      onChange={(event) => setModificar(event.target.value)}
+                      onKeyPress={onKeyPress}
+                      defaultValue={comment.comment}
+                      id={comment._id}
+                    />
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
             );
           }
@@ -104,8 +129,8 @@ const Comentarios = (props) => {
           <div className="card-header">
             <h2 className="text2">Add commnet</h2>
           </div>
-          <div className="card-body ">
-            <textarea
+          <div className="card-body">
+            <input
               onChange={(event) => setInputText(event.target.value)}
               className="card-text textComments"
               value={inputText}
@@ -116,7 +141,9 @@ const Comentarios = (props) => {
           </div>
         </div>
       ) : (
-        <h1>loguea rey comentame xD</h1>
+        <div className="ConteinerUsercomment">
+          <h3 className="text2">Sign up to comment ...</h3>
+        </div>
       )}
     </div>
   );

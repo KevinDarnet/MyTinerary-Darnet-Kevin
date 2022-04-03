@@ -46,7 +46,9 @@ export default function App() {
         </div>
       </div>
       <div className="copyrigthfooter">
-        <h3 className="hfooter">Copyright © KevinDarnet | Mytinerary | 2022</h3>
+        <h3 className="hfooter">
+          Copyright © Kevin Darnet | Mytinerary | 2022
+        </h3>
       </div>
     </>
   );

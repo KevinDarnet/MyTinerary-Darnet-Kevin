@@ -315,7 +315,8 @@ button:hover .button-text {
 }
 
 .hfooter {
-  padding: 0.5rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
   color: #dddddd;
   font-size: 1rem !important;
 }
@@ -499,6 +500,7 @@ button:hover .button-text {
   align-items: center;
 }
 .carddetails {
+  background-color: rgb(27, 27, 27);
   display: flex;
   flex-direction: column;
   justify-items: center;
