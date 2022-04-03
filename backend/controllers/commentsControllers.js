@@ -30,21 +30,26 @@ const commentsControllers = {
   },
 
   modifyComment: async (req, res) => {
-    const { comment } = req.body;
+    /*     console.log(req.body);
+     */ const { _id, comments } = req.body.comentario;
     try {
       const modifyComment = await Itineraries.findOneAndUpdate(
-        { "comments._id": req.params.id },
-        { $set: { "comments.$.comment": comment } },
+        { "comments._id": _id },
+        { $set: { "comments.$.comment": comments } },
         { new: true }
       ).populate("comments.userID", { fullname: 1, picture: 1 });
-      modifyComment.save();
+      console.log(modifyComment);
       res.json({
         success: true,
         response: { modifyComment },
         message: "tu commentario se ha modificado",
       });
     } catch (error) {
-      res.json({ success: false, response: error.message });
+      console.log(error);
+      res.json({
+        success: true,
+        message: "Algo salió mal, intentalo nuevamente",
+      });
     }
   },
 
@@ -56,14 +61,13 @@ const commentsControllers = {
         {
           $pull: {
             comments: {
-              _id: req.params.comment,
+              _id: id,
             },
           },
         },
         { new: true }
-      ).populate("comments.userID", { fullname: 1, picture: 1 });
+      );
       console.log(deleteComment);
-      deleteComment.save();
       res.json({
         success: true,
         response: { deleteComment },

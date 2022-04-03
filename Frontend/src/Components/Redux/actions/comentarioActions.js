@@ -14,7 +14,7 @@ export default function comentarioReducer(state = dataInicial, action) {
       return state;
   }
 }
-const MENSAJE_CARGADO = "MENSAJE_CARGADO";
+const MENSAJE_CARGADO = "fetchAddComments";
 
 export const cargarComentario =
   (comentario, unCambio) => async (dispatch, getState) => {
@@ -29,7 +29,7 @@ export const cargarComentario =
         },
       }
     );
-    dispatch({ type: MENSAJE_CARGADO, payload: !unCambio });
+    dispatch({ type: "fetchAddComments", payload: !unCambio });
     return res;
   };
 export const actualizarComentario =
@@ -53,7 +53,7 @@ export const eliminarComentario =
   (id, unCambio) => async (dispatch, getState) => {
     const token = localStorage.getItem("token");
     const res = await axios.post(
-      `http://localhost:4000/api/itinerarios/comentarios/${id}`,
+      `http://localhost:4000/api/itineraries/comment/delete/${id}`,
       {},
       {
         headers: {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
+import comentarioReducer, {
   cargarComentario,
   actualizarComentario,
   eliminarComentario,
@@ -9,21 +9,22 @@ import "../Styles/comentarios.css";
 
 const Comentarios = (props) => {
   console.log(props);
+
   const dispatch = useDispatch();
   //usa los reducer desde un store
   const usuario = props.user;
-  const cambio = props.comentarioReducer;
+  const cambio = useSelector((state) => state.comentarioReducer.cambio);
+  console.log(cambio);
+
   const [inputText, setInputText] = useState();
   const [modificar, setModificar] = useState();
-  /*   console.log("primero");
-   */
+
   async function cargarUnComentario(event) {
     const comentarioUsuario = {
       itineraryID: props.itineraryID,
       comments: inputText,
     };
-    /*     console.log(comentarioUsuario);
-     */ //quiero el conjuntod de comentarios dependiendo de un id
+
     await dispatch(cargarComentario(comentarioUsuario, cambio)).then(
       (res) => console.log(res),
       setInputText("")
@@ -32,8 +33,8 @@ const Comentarios = (props) => {
 
   async function modificarComentario(event) {
     const comentarioUsuario = {
-      comentarioId: event.target.id,
-      comentario: modificar,
+      _id: event.target.id,
+      comments: modificar,
     };
     //console.log(comentarioUsuario)
     await dispatch(actualizarComentario(comentarioUsuario, cambio)).then(
@@ -48,44 +49,60 @@ const Comentarios = (props) => {
     <div className="comentarios">
       {typeof props?.comments !== "undefined" ? (
         props?.comments?.map((comment, index) => {
-          console.log(usuario);
           if (comment?.userID?._id !== usuario?.id) {
             return (
               <div className="Comment" key={index}>
-                <p>{comment?.comment}</p>
+                <p className="text">{comment?.comment}</p>
               </div>
             );
           } else {
             return (
               <div className="card3 cardComments" key={index}>
-                <h5 className="card-header">{comment?.userID?.fullName}</h5>
+                <div className="ConteinerUsercomment">
+                  <img className="imguser" src={comment?.userID?.picture} />
+                  <h2 className="textName">{comment?.userID?.fullName}</h2>
+                  <input
+                    type="textName"
+                    className="card-text textComments"
+                    onChange={(event) => setModificar(event.target.value)}
+                    value={comment.comment}
+                  />
+
+                  <button
+                    className="btn btn-primary"
+                    id={comment._id}
+                    onClick={modificarComentario}
+                  >
+                    Modify
+                  </button>
+                  <button
+                    className="btn btn-primary"
+                    id={comment._id}
+                    onClick={matarComentario}
+                  >
+                    Delete
+                  </button>
+                </div>
                 <div className="card-body ">
                   <textarea
                     type="text"
                     className="card-text textComments"
                     onChange={(event) => setModificar(event.target.value)}
-                    value={comment.comment}
+                    defaultValue={comment.comment}
                   />
-                  <button
-                    id={comment.comment._id}
-                    onClick={modificarComentario}
-                  >
-                    Modificar
-                  </button>
-                  <button id={comment._id} onClick={matarComentario}>
-                    Eliminar
-                  </button>
                 </div>
               </div>
             );
           }
         })
       ) : (
-        <p>realiza el primer comentario</p>
+        <p>Add your comment</p>
       )}
       {usuario ? (
         <div className="card3 cardComments">
-          <div className="card-header">DEJANOS TU COMENTARIO</div>
+          <div className="card-header">
+            <h2 className="text2">Add commnet</h2>
+          </div>
           <div className="card-body ">
             <textarea
               onChange={(event) => setInputText(event.target.value)}
@@ -93,7 +110,7 @@ const Comentarios = (props) => {
               value={inputText}
             />
             <button onClick={cargarUnComentario} className="btn btn-primary">
-              Cargar
+              Update
             </button>
           </div>
         </div>

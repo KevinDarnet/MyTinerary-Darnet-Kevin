@@ -35,7 +35,7 @@ itinerariesRouter
   .post(passport.authenticate("jwt", { session: false }), addComment);
 
 itinerariesRouter
-  .route("/itineraries/comment/:id")
+  .route("/itineraries/comment/delete/:id")
   .post(passport.authenticate("jwt", { session: false }), deleteComment);
 
 itinerariesRouter

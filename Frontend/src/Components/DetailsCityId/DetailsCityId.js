@@ -10,11 +10,12 @@ import Swal from "sweetalert2";
 import "../Styles/itineraryDetails.css";
 import Activities from "./Activities";
 import Comments from "../Comments/comments";
-import comentarioActions from "../Redux/actions/comentarioActions";
+import { useSelector } from "react-redux";
 
 const DetailsCityId = (props) => {
   /*   console.log(props);
    */ console.log(props.itineraries);
+  const cambio = useSelector((state) => state.comentarioReducer.cambio);
   const [reload, setReload] = useState();
   const { city } = props;
   const { id } = useParams();
@@ -36,7 +37,7 @@ const DetailsCityId = (props) => {
   useEffect(() => {
     props.findOneCity(id);
     props.itinerarioPorCiudad(id);
-  }, [!reload]);
+  }, [!reload, cambio]);
 
   return (
     <>
